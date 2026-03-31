@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratify</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <h2>Stratify</h2>
+
+        <div class="rotas">
+            <a href="">Simulador Financeiro</a>
+            <a href="cadastro.html">Cadastro</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <div class="login">
+        <div class="container">
+            <div class="titulo">
+                <h2>É um prazer <br> tê-lo(a) <br> conosco <br> novamente!</h2>
+            </div>
+
+            <div class="forms">
+
+                <h3>Login:</h3>
+
+                 <div class="input-group email">
+                    <img src="img/email.png" alt="">
+                    <input type="text" id="input_email" placeholder="E-mail:"> <br><br>
+                </div>
+
+                <div class="input-group">
+                    <img src="img/segurança.png" alt="">
+                    <input type="text" id="ipt_senha" placeholder="Senha:" oninput="Analisar()"><br><br>
+                </div>
+
+
+                <div class="input-group botao">
+                    <img src="img/entrar.png" alt="">
+                    <button onclick="login()">Entrar</button>
+                </div>
+
+                <div id="mensagem"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function login() {
+        let email = input_email.value;
+        let senha = ipt_senha.value;
+
+        if(email != 'stratify@sptech.school'){
+            mensagem.innerHTML = `<span style="color: red;">E-mail e/ou senha inválido!</span>` 
+        }else if(senha != 'Stratify'){
+            mensagem.innerHTML = `<span style="color: red;">E-mail e/ou senha inválido!</span>` 
+        }else{
+            mensagem.innerHTML = `<span style="color: green;">Login efetuado com sucesso!</span>` 
+        }
+
+    }
+</script>

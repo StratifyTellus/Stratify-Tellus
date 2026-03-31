@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratify</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <h2>Stratify</h2>
+
+        <div class="rotas">
+            <a href="">Simulador Financeiro</a>
+            <a href="cadastro.html">Cadastro</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <div class="cadastro">
+        <div class="container">
+            <div class="titulo">
+                <h2>Conte conosco <br> para uma <br> experiência <br> incrível.</h2>
+            </div>
+
+            <div class="forms">
+
+                <h3>Cadastre-se:</h3>
+
+                <div class="input-group">
+                    <img src="img/nome.png" alt="">
+                    <input type="text" id="input_nome" placeholder="Nome Completo:"><br><br>
+                </div>
+
+                <div class="input-group email">
+                    <img src="img/email.png" alt="">
+                    <input type="text" id="input_email" placeholder="E-mail:"> <br><br>
+                </div>
+
+                <div class="input-group">
+                    <img src="img/segurança.png" alt="">
+                    <input type="text" id="ipt_senha" placeholder="Senha:" oninput="Analisar()"><br><br>
+                </div>
+
+                <div class="input-group">
+                    <img src="img/segurança.png" alt="">
+                    <input type="text" id="input_confirmar" placeholder="Confirmar Senha:"><br><br>
+                </div>
+
+                <div class="input-group botao">
+                    <img src="img/entrar.png" alt="">
+                    <button onclick="cadastro()">Cadastrar</button>
+                </div>
+
+                <div id="mensagem"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function Analisar() {
+        let senha = ipt_senha.value;
+        let tamanho = senha.length;
+        let senhaMai = senha.toUpperCase();
+        let senhaMin = senha.toLowerCase();
+        let forca = 0;
+
+        if (tamanho >= 8) {
+            forca++;
+        }
+        if (senha != senhaMai) {
+            forca++;
+        }
+        if (senha != senhaMin) {
+            forca++;
+        }
+
+        if (forca == 3) {
+            mensagem.innerHTML = `<span style="color: green;">Senha forte</span>`;
+        } else if (forca == 2) {
+            mensagem.innerHTML = `<span style="color: orange;">Senha média</span>`;
+        } else if (forca == 1) {
+            mensagem.innerHTML = `<span style="color: yellow;">Senha fraca</span>`;
+        } else {
+            mensagem.innerHTML = `<span style="color: red;">Senha inválida</span>`;
+        }
+    }
+
+    function cadastro() {
+        let nome = input_nome.value
+        let email = input_email.value;
+        let senha = ipt_senha.value;
+        let confirmacao = input_confirmar.value
+        let termina_com_sptech = email.endsWith('sptech.school');
+        let tem_arroba = email.indexOf('@') != -1;
+        let numNome = nome.indexOf('0') != -1;
+
+        if (numNome) {
+            mensagem.innerHTML = `<span style="color: red;">Nome inválido!</span>`
+        } else if (senha !== 'Stratify') {
+            mensagem.innerHTML = `<span style="color: red;">Senha inválida!</span>`;
+        } else if (!tem_arroba || !termina_com_sptech) {
+            mensagem.innerHTML = `<span style="color: red;">E-mail inválido</span>`;
+        } else if (confirmacao != senha) {
+            mensagem.innerHTML = `<span style="color: red;">Erro na confirmação da senha!</span>`
+        } else {
+            mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
+        }
+    }
+</script>
