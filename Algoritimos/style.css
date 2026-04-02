@@ -123,3 +123,50 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.container-missao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.texto{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-missao .titulo{
+    color: white;
+    font-size: 70px;
+    text-shadow: 
+        0 0 5px yellow,
+        0 0 5px yellow,
+        0 0 10px orange;
+    margin: 0;
+}
+
+.container-missao .paragrafo{
+    color: white;
+    width: 460px;
+    font-size: 20px;
+    text-align: justify;
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.container-missao .imagem img{
+    width: auto;
+    height: 40vh;
+    margin-left: 80px;
+}
+
+.missao{
+    background-color: rgb(0, 0, 0, 0.7);
+    border-radius: 15px;
+    width: 900px;
+    margin: 0 auto;
+    margin-top: 65px;
+    padding: 50px;
+    
+}
