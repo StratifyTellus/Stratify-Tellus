@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
+</head>
+<body class="body-background-img">
+    <div class="header">
+        <h2>Stratify</h2>
+
+        <div class="rotas">
+            <a href="">Simulador Financeiro</a>
+            <a href="cadastro.html">Cadastro</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+    <div class="container-simulador">
+        <div class="conteudo">
+            <div class="card-titulo">
+                <p>Simule o seu <br> retorno financeiro <br> com a Stratify!</p>
+            </div>
+            <div class="card-botao">
+             <a href="#container-dados">
+    <button class="btn-comecar">Começar</button>
+</a>
+            </div>
+        </div>
+    </div>
+    <div id="container-dados">
+        <div class="inputs01">
+            <div class="container-input">
+                <div class="titulo-div">
+                    <p>Preencha abaixo os parâmetros de sua simulação:</p>
+                </div>
+                <div class="input-perguntas">
+                    <p class="ipt-titulo">Prejuízos por paralização:</p>
+                    <label>Quantidade de dias em paralização:</label>
+                    <input id="ipt-dias-paralizacao" type="text"> <br>
+
+                    <label for="">Número de funcionários parados:</label> 
+                    <input id="ipt-func-parados" type="text"> <br>
+
+                    <label for="">Salario médio diário dos funcionários:</label> 
+                    <input id="ipt-sal-funcionarios" type="text"> <br>
+                </div>
+            </div>
+            
+        </div>
+        <div class="inputs02">
+              <div class="container-input">
+                <div class="titulo-div02">
+                    <p></p>
+                    <br>
+                </div>
+                <div class="input-perguntas">
+                    <p class="ipt-titulo2">Prejuízos por indenização:</p>
+
+                    <label class="label02">Número de famílias afetadas:</label>
+                    <input id="ipt-familias-afetadas" class="input02" type="text"> <br>
+
+                    <label class="label02">Área ambiental afetada em metros quadrados:</label> 
+                    <input id="ipt-area-afetada" class="input02" type="text"> <br>
+
+                    <label class="label02">Volume de rejeitos deslocados em metros cúbicos:</label> 
+                    <input id="ipt-rejeitos" class="input02" type="text"> <br>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
