@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stratify</title>
+    <link rel="stylesheet" href="style2.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+
+<body>
+
+    <div class="header">
+         <h2>Stratify</h2>
+
+        <div class="rotas">
+            <a href="simulador.html">Simulador Financeiro</a>
+            <a href="cadastro.html">Cadastro</a>
+            <a href="login.html">Login</a>
+        </div>
+    </div>
+
+
+        <div class="kpi">
+
+            <div class="boxe">
+                <h2 class="box1">Horas em risco: 8h - Total do dia: 24h<br><br>
+                    <span><b>Índice de Risco Operacional:</b><br>33%</span>
+                </h2>
+            </div>
+
+
+            <div class="boxe2">
+                <h2 class="box2">Prejuízo total: R$ 60.000 - Tempo parado: 2h<br><br>
+                    <span><b>Impacto Financeiro: <br>R$ 60.000/dia</b></span>
+                </h2>
+            </div>
+        </div>
+
+
+    <div class="titulos-container">
+        <div class="titulo">
+            <p>Diária (04/04/26) de dados do sensor de Umidade do Solo</p>
+        </div>
+
+         <div class="titulo">
+            <p>Média mensal da umidade do solo</p>
+        </div>
+
+    </div>
+
+        
+
+        <div class="graficos-container">
+            <div class="banner1">
+                <canvas id="ourDashboard" class="grafico1"></canvas>
+            </div>
+
+            
+                <div class="banner2">
+                    <canvas id="ourDashboard2" class="grafico2"></canvas>
+                </div>
+
+            </div>
+
+
+</body>
+
+<script>
+    const ctx = document.getElementById('ourDashboard');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+            datasets: [{
+                label: 'Umidade do Solo %',
+                data: [18, 22, 25, 28, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 78, 72, 68, 60, 55, 50, 45, 40],
+                backgroundColor: '#DBCB9D',
+                borderColor: '#DBCB9D',
+                borderWidth: 1,
+                yAxisID: 'y'
+            },
+            {
+                label: 'Risco',
+                data: [4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 3, 3, 3, 2, 2, 2, 2, 2],
+                backgroundColor: '#996600',
+                borderColor: '#996600',
+                borderWidth: 1,
+                yAxisID: 'y1'
+            }
+
+            ]
+
+
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'black'
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    position: 'left',
+                    min: 0,
+                    max: 100,
+                    title: {
+                        display: true,
+                        text: 'Umidade (%)'
+                    }
+                },
+                y1: {
+                    position: 'right',
+                    min: 1,
+                    max: 4,
+                    grid: {
+                        drawOnChartArea: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Risco'
+                    },
+                    ticks: {
+                        callback: function (value) {
+                            const labels = {
+                                1: 'Baixo',
+                                2: 'Moderado',
+                                3: 'Alto',
+                                4: 'Crítico'
+                            };
+                            return labels[value];
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    const ctx2 = document.getElementById('ourDashboard2');
+
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+            datasets: [{
+                label: 'Umidade média do Solo mensal %',
+                data: [52, 55, 63, 58, 50, 25],
+                backgroundColor: '#996600',
+                borderColor: '#996600',
+                borderWidth: 1,
+            }
+
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    min: 0,
+                    max: 100,
+                }
+            }
+        }
+    });
+
+</script>
+
+</html>
