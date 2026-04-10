@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stratify</title>
+    <title>Conecte-se</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,7 +14,7 @@
         <h2>Stratify</h2>
 
         <div class="rotas">
-            <a href="">Simulador Financeiro</a>
+            <a href="simulador.html">Simulador Financeiro</a>
             <a href="cadastro.html">Cadastro</a>
             <a href="login.html">Login</a>
         </div>
@@ -37,7 +37,7 @@
 
                 <div class="input-group">
                     <img src="img/segurança.png" alt="">
-                    <input type="text" id="ipt_senha" placeholder="Senha:" oninput="Analisar()"><br><br>
+                    <input type="text" id="ipt_senha" placeholder="Senha:""><br><br>
                 </div>
 
 
@@ -65,7 +65,12 @@
             mensagem.innerHTML = `<span style="color: red;">E-mail e/ou senha inválido!</span>` 
         }else{
             mensagem.innerHTML = `<span style="color: green;">Login efetuado com sucesso!</span>` 
+            setTimeout(function () {
+                        window.location = ".//dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+
         }
 
+        
     }
 </script>

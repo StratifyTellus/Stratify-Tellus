@@ -86,7 +86,7 @@ html {
     padding: 5px;
     border: none;
     border-radius: 5px;
-    border: 2px solid rgb(255, 217, 0);
+    background-color:rgb(255, 217, 0);
     cursor: pointer;
 }
 
@@ -233,7 +233,7 @@ html {
     width: 100%;
 }
 
-button {
+.btn-comecar {
     background-color: #eaae40;
     border-radius: 10px;
     height: 50px;
@@ -364,4 +364,136 @@ input {
     padding: 8px 0;
     color: rgb(0, 0, 0);
     font-size: 20px;
+}
+
+
+.container-dados02{
+    background-image: url(img/solo02.png);
+    display: flex;
+    align-items: center;
+    height: 710px;
+    flex-direction: column;
+
+    
+
+}
+
+.card-inputs {
+    height: 550px; 
+    border-radius: 15px;
+    background-color: #e9c17d;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    width: 80%;
+    margin: auto;
+}
+
+
+.input-perguntas02 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 460px;
+    padding-left: 60px;
+    justify-content: space-between;
+    
+}
+.div-input{
+    height: 40px;
+}
+
+.label03 {
+  
+     color: #000000;
+    font-weight: 600;
+    font-size: 19px;
+}
+
+.input03 {
+    width: 50%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid #000000;
+    outline: none;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+}
+
+.ipt-titulo3 {
+    display: flex;
+    align-items: flex-end;
+    height: 60px;
+    padding: 0%;
+    font-size: 25px;
+    color: #000000;
+    font-weight: bold;
+    
+}
+
+.btn-simular {
+    background-color: #000000;
+    border-radius: 15px;
+    height: 50px;
+    width: 120px;
+    color: #ffffff;
+    font-weight: 750;
+    border: #eaae40 solid 3px;
+    margin-bottom: 30px;
+
+}
+
+
+/* calculando dados da simulacao*/
+.container-resposta {
+    background-color: #a08437;
+    height: 670px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mensagemFinal {
+    width: 90%;
+    margin: auto;
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.card-mensagens {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    background-color: #d9d9d9;
+    border-radius: 15px;
+    width: 330px;
+    height: 200px;
+    align-items: center;
+}
+.card-mensagens02 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #d9d9d9;
+    font-weight: 500;
+    align-self: center;
+    border-radius: 15px;
+    width: 330px;
+    height: 200px;
+    align-items: center;
+}
+
+.p_mensagem {
+    text-align: center;
+    margin: auto;
+    align-self: center;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
 }

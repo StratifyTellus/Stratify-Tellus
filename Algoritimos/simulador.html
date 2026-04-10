@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simulador</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
 </head>
@@ -23,9 +23,9 @@
                 <p>Simule o seu <br> retorno financeiro <br> com a Stratify!</p>
             </div>
             <div class="card-botao">
-             <a href="#container-dados">
-    <button class="btn-comecar">Começar</button>
-</a>
+            <a href="#container-dados">
+                <button class="btn-comecar">Começar</button>
+            </a>
             </div>
         </div>
     </div>
@@ -38,13 +38,13 @@
                 <div class="input-perguntas">
                     <p class="ipt-titulo">Prejuízos por paralização:</p>
                     <label>Quantidade de dias em paralização:</label>
-                    <input id="ipt-dias-paralizacao" type="text"> <br>
+                    <input id="input_dias_paralisacao" type="text"> <br>
 
                     <label for="">Número de funcionários parados:</label> 
-                    <input id="ipt-func-parados" type="text"> <br>
+                    <input id="input_funcionario_parado" type="text"> <br>
 
                     <label for="">Salario médio diário dos funcionários:</label> 
-                    <input id="ipt-sal-funcionarios" type="text"> <br>
+                    <input id="input_salario_funcionario" type="text"> <br>
                 </div>
             </div>
             
@@ -58,19 +58,119 @@
                 <div class="input-perguntas">
                     <p class="ipt-titulo2">Prejuízos por indenização:</p>
 
-                    <label class="label02">Número de famílias afetadas:</label>
-                    <input id="ipt-familias-afetadas" class="input02" type="text"> <br>
-
                     <label class="label02">Área ambiental afetada em metros quadrados:</label> 
-                    <input id="ipt-area-afetada" class="input02" type="text"> <br>
+                    <input id="input_area_ambiental" class="input02" type="text"> <br>
 
                     <label class="label02">Volume de rejeitos deslocados em metros cúbicos:</label> 
-                    <input id="ipt-rejeitos" class="input02" type="text"> <br>
+                    <input id="input_volume_limpeza" class="input02" type="text"> <br>
                 </div>
             </div>
 
         </div>
 
     </div>
+    <div class="container-dados02">
+        <div class="card-inputs">
+            <div class="input-perguntas02">
+
+                <p class="ipt-titulo3">Prejuízos de reparações</p>
+                <div class="div-input">
+                    <label class="label03">Área do talude afetada pelo deslocamento: </label> <br>
+                    <input type="text" id="input_area_talude" class="input03"> <br> <br>
+                </div>
+                <p class="ipt-titulo3">Receitas</p>
+                <div class="div-input">
+                    <label class="label03">Receita diária: </label><br>
+                    <input type="text" id="input_receita_dia"  class="input03"> <br> <br>
+                </div>
+                <p class="ipt-titulo3">Custos de instalação do sistema de monitoramento</p>
+                <div class="div-input">
+                    <label class="label03">Insira a área que deseja monitorar em <i>metros quadrados</i></label><br>
+                    <input type="text" id="input_area_monitorada"  class="input03"> <br> <br>
+                </div>
+            </div>
+            
+        </div>
+        <button class="btn-simular" onclick="Calcular()">Simular</button>
+        
+    </div>
+    <div class="container-resposta">
+        <div class="titulo-div">
+            <p>De acordo com os dados fornecidos você enfrenta em média:</p>
+        </div>
+        
+        <div id="mensagemFinal">   <!--resposta da simulacao-->
+        </div>
+    </div>
 </body>
+<script>
+    function Calcular() {
+
+        // Total de prejuízos por paralisacao
+        let diasP = Number(input_dias_paralisacao.value);
+        let funcionariosP = Number(input_funcionario_parado.value);
+        let salarioF = Number(input_salario_funcionario.value);
+        let totalParalisacao = salarioF * funcionariosP * diasP;
+
+        // Total de prejuizos por Indenizações
+        let areaAmbiental = Number(input_area_ambiental.value) * 23; // R$23 Por metros quadrados afetados, baseado nos valores pagos no rompimento da barragem de Mariana (MG)
+        let volumeRejeitos = Number(input_volume_limpeza.value) * 130; // R$130 por metro cúbico de rejeitos, dados fornecidos pela World Bank
+        let totalIndenizacoes = areaAmbiental + volumeRejeitos
+
+        // Total de prejuízos com reparações
+        let areaReparada = Number(input_area_talude.value) * 300; // R$300 por metro quadrado reparado, baseados nos valores fornecidos pela revista Science Direct
+
+        // Receitas adquiridas
+        let receitaD = Number(input_receita_dia.value)
+        let comparacaoParalisacao = receitaD * diasP
+
+        // Total de Prejuizos
+        let totalPrejuizos = areaReparada + totalIndenizacoes + totalParalisacao + comparacaoParalisacao
+
+        // Valor evitado de prejuízos
+        let valorReduzido = totalPrejuizos * 0.45 // Soluções preventivas de monitoramento costumam reduzir de 20 a 60% os custos com prejuízos, segundo o software de manutenção Fracttal
+
+        // Cálculo do valor a ser pago para adesão dos serviços de monitoramento
+        let area = Number(input_area_monitorada.value)
+        let sensor = area / 100 // 1 sensor para cada 100 metros quadrados
+        let custoInstalacao = sensor * 50 // R$50,00 para instalação de cada sensor
+        let valorContratual = sensor + custoInstalacao + 50000 // Valor estabelecido a ser pago pela contratante pelos serviços Stratify
+        
+       
+        mensagemFinal.innerHTML = ""; 
+
+        let mensagens = [
+        `<p class="p_mensagem"> R$ ${totalParalisacao.toLocaleString('pt-BR')} de custos em caso de paralisação </p>`,
+        `<p class="p_mensagem"> R$ ${totalIndenizacoes.toLocaleString('pt-BR')} em caso de indenizações</p>`,
+        `<p class="p_mensagem"> R$ ${areaReparada.toLocaleString('pt-BR')} com custos de reparação <br> <br>
+        Receita diária aproximada: R$ ${receitaD.toLocaleString('pt-BR')}</b> <br>
+        Perda com os dias de paralização: R$ ${comparacaoParalisacao.toLocaleString('pt-BR')} <br>
+        Total de prejuízos: R$ ${totalPrejuizos.toLocaleString('pt-BR')}</b></p>`
+        ];
+
+      
+        
+
+        for (let contador = 0; contador < mensagens.length; contador++) {
+            mensagemFinal.innerHTML += `
+
+            <div class="card-mensagens02">
+                ${mensagens[contador]}
+
+            </div>
+    
+
+        `
+    }
+    mensagemFinal.innerHTML += `
+    <div class="card-mensagens02">
+            <p class="p_mensagem">
+                Adquirindo nossos serviços no valor de R$ ${valorContratual.toLocaleString('pt-BR')}, <br>
+            sua empresa reduziria cerca de R$ ${valorReduzido.toLocaleString('pt-BR')}
+            </p>
+    </div>
+        `
+
+    }
+</script>
 </html>
