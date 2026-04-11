@@ -4,171 +4,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stratify</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="style2.css">
-
+    <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 
 <body>
 
-    <div class="header">
-         <h2>Stratify</h2>
-
-        <div class="rotas">
-            <a href="simulador.html">Simulador Financeiro</a>
-            <a href="cadastro.html">Cadastro</a>
-            <a href="login.html">Login</a>
-        </div>
-    </div>
-
-
-        <div class="kpi">
-
-            <div class="boxe">
-                <h2 class="box1">Horas em risco: 8h - Total do dia: 24h<br><br>
-                    <span><b>Índice de Risco Operacional:</b><br>33%</span>
-                </h2>
+    <div class="janela">
+        <div class="header-left">
+            <h1>Stratify</h1>
+            <img src="img/logo.png" width="100px">
+            <div class="hello">
+                <p>Olá, <span>usuário</span>!</p>
+                <p>Bem vindo a sua <span>Dash</span>!</p>
             </div>
-
-
-            <div class="boxe2">
-                <h2 class="box2">Prejuízo total: R$ 60.000 - Tempo parado: 2h<br><br>
-                    <span><b>Impacto Financeiro: <br>R$ 60.000/dia</b></span>
-                </h2>
+            <div class="btn-logout" onclick="limparSessao()">
+             <a href="index.html"><h3>Sair</h3></a>
             </div>
         </div>
 
+        <div class="container-dashboard">
+            <p class="titulo-dashboard">Dashboard</p>
+            <div class="kpis">
+                <div class="card-kpi">
+                    <p class="card">Total Monitorações</p>
+                    <span class="valor">72</span>
+                    <span>Monitorações Diárias:</span>
+                    <span>24</span>
+                </div>
 
-    <div class="titulos-container">
-        <div class="titulo">
-            <p>Diária (04/04/26) de dados do sensor de Umidade do Solo</p>
-        </div>
-
-         <div class="titulo">
-            <p>Média mensal da umidade do solo</p>
-        </div>
-
-    </div>
-
-        
-
-        <div class="graficos-container">
-            <div class="banner1">
-                <canvas id="ourDashboard" class="grafico1"></canvas>
+                <div class="card-kpi">
+                    <h2 class="card">Total alertas com Risco Crítico<br><br>
+                        <span class="valor"><b></b><br>2% </span>
+                    </h2>
+                </div>
+                <div class="card-kpi">
+                    <h2 class="card">Total alertas com Risco Alto<br><br>
+                        <span class="valor"><b></b><br>5%<br></span>
+                    </h2>
+                </div>
+                <div class="card-kpi">
+                    <h2 class="card">Total alertas com Risco Moderado<br><br>
+                        <span class="valor"><b></b><br>23%</span>
+                    </h2>
+                </div>
+                <div class="card-kpi">
+                    <h2 class="card">Total alertas com Risco Baixo<br><br>
+                        <span class="valor"><b></b><br>37%</span>
+                    </h2>
+                </div>
             </div>
 
-            
-                <div class="banner2">
-                    <canvas id="ourDashboard2" class="grafico2"></canvas>
+            <div class="container-graficos">
+                <div class="card-grafico">
+                    <div class="banner1">
+                        <div class="titulo-grafico">
+                        <p>Resumo Diário</p>
+                        </div>
+                        <canvas id="myChart" class="grafico1"></canvas>
+                    </div>
+                    <br>
+                    <div class="banner2">
+                        <div class="titulo-grafico">
+                        <p>Resumo Mensal</p>
+                        </div>
+                        <canvas id="myChart2" class="grafico2"></canvas>
+                    </div>
+                </div>
+                    
+                <div class="card-grafico2">
+                    <div class="div-grafico2">
+                        <div class="grafico-pizza">
+                            <div class="titulo-grafico">
+                                <p>Classifição de Risco Diária</p>
+                            </div>
+                            <canvas id="myChart3" class="grafico3"></canvas>
+                        </div>
+                    </div>
+                    <br> <br>
+                    <div class="div-tabela">
+                        <div class="titulo-grafico">
+                                <p>Classifição conforme região</p>
+                            </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Localidade</th>
+                                    <th>Estado</th>
+                                    <th>Umidade Total</th>
+                                    <th>Risco</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="regiao-selecionada">
+                                    <td>Juiz de Fora</td>
+                                    <td>MG</td>
+                                    <td>49%</td>
+                                    <td class="moderado">Moderado</td>
+                                </tr>
+                                <tr>
+                                    <td>São Roque</td>
+                                    <td>SP</td>
+                                    <td>70%</td>
+                                    <td class="alto">Alto</td>
+                                </tr>
+                                <tr>
+                                    <td>Euclides da Cunha</td>
+                                    <td>BA</td>
+                                    <td>21%</td>
+                                    <td class="baixo">Baixo</td>
+                                </tr>
+                                <tr>
+                                    <td>Rio Branco</td>
+                                    <td>AC</td>
+                                    <td>81%</td>
+                                    <td class="critico">Crítico</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
             </div>
 
-
+        </div>
+    </div>
+    </div>
 </body>
-
 <script>
-    const ctx = document.getElementById('ourDashboard');
+    const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
             datasets: [{
-                label: 'Umidade do Solo %',
-                data: [18, 22, 25, 28, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 78, 72, 68, 60, 55, 50, 45, 40],
-                backgroundColor: '#DBCB9D',
-                borderColor: '#DBCB9D',
-                borderWidth: 1,
-                yAxisID: 'y'
-            },
-            {
-                label: 'Risco',
-                data: [4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 3, 3, 3, 2, 2, 2, 2, 2],
-                backgroundColor: '#996600',
-                borderColor: '#996600',
-                borderWidth: 1,
-                yAxisID: 'y1'
+                label: 'Umidade',
+                borderColor: '#563c27',
+                backgroundColor: '#563c27',
+                data: [18, 22, 25, 28, 30, 35, 12, 27, 50, 55, 60, 65, 70, 82, 80, 67, 78, 72, 68, 60, 55, 50, 45, 40],
+                borderWidth: 3
             }
 
             ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 
+    const ctx2 = document.getElementById('myChart2');
 
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril'],
+            datasets: [{
+                label: 'Umidade Média',
+                borderColor: '#563c27',
+                backgroundColor: '#563c27',
+                data: ['56', '40', '60', '70', '80', '30', '40', '30', '20'],
+                borderWidth: 1
+            }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const ctx3 = document.getElementById('myChart3');
+
+    new Chart(ctx3, {
+        type: 'pie',
+        data: {
+            labels: ['Baixo', 'Moderado', 'Alto', 'Crítico'],
+            datasets: [{
+                data: [7, 9, 6, 2],
+                backgroundColor: [
+                    '#4CAF50',
+                    '#FFC107',
+                    '#FF9800',
+                    '#F44336'
+                ],
+                borderWidth: 1
+            }]
         },
         options: {
             responsive: true,
             plugins: {
                 legend: {
-                    labels: {
-                        color: 'black'
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    position: 'left',
-                    min: 0,
-                    max: 100,
-                    title: {
-                        display: true,
-                        text: 'Umidade (%)'
-                    }
-                },
-                y1: {
-                    position: 'right',
-                    min: 1,
-                    max: 4,
-                    grid: {
-                        drawOnChartArea: false
-                    },
-                    title: {
-                        display: true,
-                        text: 'Risco'
-                    },
-                    ticks: {
-                        callback: function (value) {
-                            const labels = {
-                                1: 'Baixo',
-                                2: 'Moderado',
-                                3: 'Alto',
-                                4: 'Crítico'
-                            };
-                            return labels[value];
-                        }
-                    }
+                    position: 'bottom'
                 }
             }
         }
     });
 
-    const ctx2 = document.getElementById('ourDashboard2');
 
-    new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
-            datasets: [{
-                label: 'Umidade média do Solo mensal %',
-                data: [52, 55, 63, 58, 50, 25],
-                backgroundColor: '#996600',
-                borderColor: '#996600',
-                borderWidth: 1,
-            }
+</script>
 
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    min: 0,
-                    max: 100,
-                }
-            }
-        }
-    });
 
+<script>
+    const myChart = new Chart(
+        document.getElementById('myChart2'),
+        config
+    );
 </script>
 
 </html>
