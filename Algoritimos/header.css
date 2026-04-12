@@ -1,0 +1,27 @@
+.header {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    gap: 10px;
+    /* espaço entre a imagem e o h2  gap=10px*/
+}
+
+.header .rotas {
+    display: flex;
+    gap: 80px;
+    margin-right: 60px;
+    font-size: 20px;
+}
+
+.header .rotas a {
+    text-decoration: none;
+    color: #efebdf;
+}

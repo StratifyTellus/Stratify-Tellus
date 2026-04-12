@@ -4,20 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecte-se</title>
+    <title>Stratify | Login</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
 </head>
 
 <body>
 
     <div class="header">
-        <h2>Stratify</h2>
-
+        <div class="logo">
+            <a href="index.html"><img src="img/logo.png" alt="" width="60px" height="auto"></a>
+        </div>
         <div class="rotas">
-            <a href="index.html">Home</a>
             <a href="simulador.html">Simulador Financeiro</a>
             <a href="quemSomos.html">Quem Somos</a>
-            <a href="nossaMissao.html">Nossa Missão</a>
+            <a href="produto.html">Nosso Produto</a>
             <a href="cadastro.html">Cadastro</a>
         </div>
     </div>
@@ -32,14 +33,14 @@
 
                 <h3>Login:</h3>
 
-                 <div class="input-group email">
+                <div class="input-group email">
                     <img src="img/email.png" alt="">
                     <input type="text" id="input_email" placeholder="E-mail:"> <br><br>
                 </div>
 
                 <div class="input-group">
                     <img src="img/segurança.png" alt="">
-                    <input type="text" id="ipt_senha" placeholder="Senha:""><br><br>
+                    <input type="password" id="ipt_senha" placeholder="Senha:" oninput="Analisar()"><br><br>
                 </div>
 
 
@@ -61,18 +62,17 @@
         let email = input_email.value;
         let senha = ipt_senha.value;
 
-        if(email != 'stratify@sptech.school'){
-            mensagem.innerHTML = `<span style="color: red;">E-mail e/ou senha inválido!</span>` 
-        }else if(senha != 'Stratify'){
-            mensagem.innerHTML = `<span style="color: red;">E-mail e/ou senha inválido!</span>` 
-        }else{
-            mensagem.innerHTML = `<span style="color: green;">Login efetuado com sucesso!</span>` 
+        if (email != 'stratify@sptech.school') {
+            mensagem.innerHTML = `<span style="color: red;">E-mail e/ou senha inválido!</span>`
+        } else if (senha != 'Stratify') {
+            mensagem.innerHTML = `<span style="color: red;">E-mail e/ou senha inválido!</span>`
+        } else {
+            mensagem.innerHTML = `<span style="color: green;">Login efetuado com sucesso!</span>`
             setTimeout(function () {
-                        window.location = ".//dashboard.html";
-                    }, 1000); // apenas para exibir o loading
+                window.location = ".//dashboard.html";
+            }, 1000); // apenas para exibir o loading
 
         }
 
-        
     }
 </script>

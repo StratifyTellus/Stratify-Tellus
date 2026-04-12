@@ -1,46 +1,16 @@
-body {
-    background-image: url(img/fundo.jpg);
-    background-repeat: no-repeat;
+* {
     margin: 0;
     padding: 0;
+}
+
+body {
+    background-image: url(img/fundo.jpg);
     font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
 }
 
 html {
     scroll-behavior: smooth;
-}
-
-.header {
-    background-color: rgb(0, 0, 0, 0.7);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header h2 {
-    font-size: 30px;
-    font-weight: bold;
-    color: white;
-    margin-left: 40px;
-
-    text-shadow:
-        0 0 5px yellow,
-        0 0 10px yellow,
-        0 0 20px gold,
-        0 0 40px orange;
-}
-
-.header .rotas {
-    display: flex;
-    gap: 80px;
-    margin-right: 60px;
-    font-size: 20px;
-}
-
-.header .rotas a {
-    text-decoration: none;
-    color: white;
 }
 
 .cadastro {
@@ -65,11 +35,13 @@ html {
 
 .titulo {
     font-size: 30px;
+    color: #edcd7a;
 }
 
 .forms h3 {
     font-size: 30px;
     color: white;
+    margin-bottom: 10px;
 }
 
 .forms {
@@ -77,17 +49,20 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-top: -90px;
+    margin-top: -80px;
 }
 
 .forms button {
-    width: 100px;
+    width: 120px;
+    height: 50px;
     margin: 0 auto;
-    padding: 5px;
+    padding: 15px;
     border: none;
     border-radius: 5px;
-    background-color:rgb(255, 217, 0);
     cursor: pointer;
+    background-color: #885630;
+    color: #ece0cd;
+    font-size: 18px;
 }
 
 .forms input {
@@ -96,7 +71,7 @@ html {
     padding: 10px;
     border-radius: 5px;
     border: none;
-    border: 2px solid rgb(255, 217, 0);
+    border: 2px solid #edcd7a;
 }
 
 .forms img {
@@ -106,6 +81,7 @@ html {
 .input-group {
     display: flex;
     align-items: center;
+    text-align: center;
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -140,12 +116,9 @@ html {
 }
 
 .container-missao .titulo {
-    color: white;
     font-size: 70px;
-    text-shadow:
-        0 0 5px yellow,
-        0 0 5px yellow,
-        0 0 10px orange;
+    font-weight: bold;
+    color: #edcd7a;
     margin: 0;
 }
 
@@ -178,7 +151,7 @@ html {
 /*Simulador*/
 
 .body-background-img {
-    font-family: 'Telegraf', sans-serif;                                             
+    font-family: 'Telegraf', sans-serif;
     width: auto;
     background-color: black;
     background-size: cover;
@@ -211,11 +184,10 @@ html {
     width: 450px;
     height: 200px;
     padding: 20px;
-    background-color: #d2a14b;
-    color: white;
+    background-color: #885630;
+    color: #ece0cd;
     font-size: 24px;
     font-weight: bold;
-
     border-radius: 0px 30px 30px 0px;
 }
 
@@ -227,21 +199,18 @@ html {
     padding-top: 60px;
     display: flex;
     align-items: flex-end;
-
     justify-content: center;
     height: 50px;
     width: 100%;
 }
 
 .btn-comecar {
-    background-color: #eaae40;
+    background-color: #edcd7a;
     border-radius: 10px;
     height: 50px;
     width: 150px;
     color: #000000;
     font-weight: 700;
-    border: #000000 solid 3px;
-
 }
 
 #container-dados {
@@ -253,7 +222,6 @@ html {
 
 .inputs01 {
     background-image: url(img/solo.png);
-
     height: 100%;
     width: 50%;
     justify-content: center;
@@ -265,14 +233,10 @@ html {
 .container-input {
     display: flex;
     margin: auto;
-
     width: 100%;
     align-items: center;
-
-
     height: 90%;
     flex-direction: column;
-
 }
 
 .titulo-div {
@@ -289,8 +253,6 @@ html {
     font-weight: 700;
 }
 
-
-
 .input-perguntas {
     display: flex;
     flex-direction: column;
@@ -302,13 +264,13 @@ html {
 
 .ipt-titulo {
     font-size: 27px;
-    color: #eaae40;
+    color: #edcd7a;
     font-weight: bold;
     padding-bottom: 20px;
 }
 
 .inputs02 {
-    background-color: #eaae40;
+    background-color: #885630;
     height: 100%;
     width: 50%;
     justify-content: center;
@@ -321,17 +283,13 @@ html {
     display: flex;
     align-items: flex-end;
     height: 60px;
-
     font-size: 27px;
     color: #000000;
     font-weight: bold;
     padding-bottom: 20px;
-    
 }
 
-
-
-label {
+.label {
     color: #ffffff;
     font-weight: 600;
     font-size: 23px;
@@ -343,8 +301,7 @@ label {
     font-size: 23px;
 }
 
-
-input {
+.input {
     width: 90%;
     background-color: transparent;
     border: none;
@@ -366,20 +323,16 @@ input {
     font-size: 20px;
 }
 
-
-.container-dados02{
+.container-dados02 {
     background-image: url(img/solo02.png);
     display: flex;
     align-items: center;
     height: 710px;
     flex-direction: column;
-
-    
-
 }
 
 .card-inputs {
-    height: 550px; 
+    height: 550px;
     border-radius: 15px;
     background-color: #e9c17d;
     display: flex;
@@ -390,7 +343,6 @@ input {
     margin: auto;
 }
 
-
 .input-perguntas02 {
     display: flex;
     flex-direction: column;
@@ -398,15 +350,15 @@ input {
     height: 460px;
     padding-left: 60px;
     justify-content: space-between;
-    
+
 }
-.div-input{
+
+.div-input {
     height: 40px;
 }
 
 .label03 {
-  
-     color: #000000;
+    color: #000000;
     font-weight: 600;
     font-size: 19px;
 }
@@ -429,7 +381,7 @@ input {
     font-size: 25px;
     color: #000000;
     font-weight: bold;
-    
+
 }
 
 .btn-simular {
@@ -439,7 +391,7 @@ input {
     width: 120px;
     color: #ffffff;
     font-weight: 750;
-    border: #eaae40 solid 3px;
+    border: #edcd7a solid 3px;
     margin-bottom: 30px;
 
 }
@@ -447,7 +399,7 @@ input {
 
 /* calculando dados da simulacao*/
 .container-resposta {
-    background-color: #a08437;
+    background-color: #885630;
     height: 670px;
     display: flex;
     flex-direction: column;
@@ -476,6 +428,7 @@ input {
     height: 200px;
     align-items: center;
 }
+
 .card-mensagens02 {
     display: flex;
     justify-content: center;
@@ -498,9 +451,8 @@ input {
     font-weight: 700;
 }
 
- 
 /* quem somos */
-        
+
 .container-nos .imagem-somos img {
     width: auto;
     height: 69vh;
@@ -518,7 +470,7 @@ input {
     background-color: rgb(0, 0, 0, 0.7);
 }
 
-.texto-nos img{
+.texto-nos img {
     margin-left: 400px;
     width: 70px;
     height: 70px;
@@ -532,13 +484,9 @@ input {
 }
 
 .container-nos .titulo {
-    color: white;
     font-size: 60px;
-    text-shadow:
-        0 0 5px yellow,
-        0 0 5px yellow,
-        0 0 10px orange;
-    margin: 0;
+    font-weight: bold;
+    color: #edcd7a;
     margin-left: 15px;
 }
 
@@ -550,3 +498,215 @@ input {
     padding: 20px;
 }
 
+/* Tela Home - index */
+
+.main {
+    min-height: 100vh;
+
+}
+
+.main .img {
+    position: relative;
+    background-image: url(img/mineracao_img1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 80vh;
+    padding-top: 57px;
+}
+
+
+.main .img .titulo {
+    color: #edcd7a;
+    margin-left: 50px;
+    margin-top: 50px;
+    font-size: 100px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+}
+
+.main .img .slogan {
+    color: white;
+    font-size: 60px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 150px;
+    font-family: "Questrial", sans-serif;
+    font-weight: 400;
+    position: relative;
+}
+
+
+.main .text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ece0cd;
+    font-size: 25px;
+    justify-content: center;
+    padding: 40px;
+
+}
+
+.banners {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+
+.main .banner {
+    display: flex;
+    background-color: #885630;
+    min-height: 50vh;
+
+}
+
+.main .banner .banner-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .banner .banner-left .titulo {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #edcd7a;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.main .banner .banner-left .text_b {
+    font-size: 2rem;
+    align-items: start;
+    color: black;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.main .banner .banner-left .button {
+    padding: 10px 20px;
+    background-color: #edcd7a;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    color: #885630;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.main .banner .banner-right {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #edcd7a;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);
+    width: 50%;
+}
+
+.banner .banner-right img {
+    height: 300px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-right: 70px;
+    margin-top: 15px;
+
+}
+
+.main .banner .banner-right2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #edcd7a;
+    clip-path: polygon(0 0, 50% 0, 100% 100%, 0 100%);
+    width: 110%;
+}
+
+.banner .banner-right2 img {
+    height: 200px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-left: -100px;
+    margin-top: 15px;
+
+}
+
+.main .banner .banner-left2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main .banner .banner-left2 .titulo {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #edcd7a;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.main .banner .banner-left2 .text_b {
+    font-size: 30px;
+    color: black;
+}
+
+.main .banner .banner-left2 .button {
+    padding: 10px 20px;
+    background-color: #edcd7a;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+    color: #885630;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Tela Produto */
+.produto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.produto .container2 {
+    color: white;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    width: 900px;
+    min-height: 500px;
+    gap: 40px;
+    margin-top: 57px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.produto .container2 .titulo {
+    font-size: 60px;
+    color: #edcd7a;
+}
+
+.produto .container2 .img img {
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.produto .container2 .texto {
+    text-align:  center;
+    font-size: 30px;
+    max-width: 450px;
+}
