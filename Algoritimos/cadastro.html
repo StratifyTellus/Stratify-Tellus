@@ -16,9 +16,8 @@
             <a href="index.html"><img src="img/logo.png" alt="" width="60px" height="auto"></a>
         </div>
         <div class="rotas">
-            <a href="simulador.html">Simulador Financeiro</a>
-            <a href="quemSomos.html">Quem Somos</a>
-            <a href="produto.html">Nosso Produto</a>
+            <a href="index.html">Home</a>
+            <a href="cadastroUser.html">Cadastrar Funcionário</a>
             <a href="login.html">Login</a>
         </div>
     </div>
@@ -54,7 +53,7 @@
                 </div>
 
                 <select id="perfil">
-                    <option value="">Selecione o perfil</option>
+                    <option value="" selected disabled>Selecione o perfil</option>
                     <option value="administrador">Administrador</option>
                     <option value="gerente">Gerente</option>
                     <option value="supervisor">Supervisor</option>
@@ -65,7 +64,7 @@
                     <button onclick="cadastro()">Cadastrar</button>
                 </div>
 
-                <div id="mensagem"></div>
+                <div id="mensagem" class="mensagem-span"></div>
             </div>
         </div>
     </div>
@@ -109,7 +108,7 @@
         let confirmacao = input_confirmar.value
         let termina_com_sptech = email.endsWith('sptech.school');
         let tem_arroba = email.indexOf('@') != -1;
-        let numNome = nome.indexOf('0') != -1;
+        let numNome = /\d/.test(nome);
         let perfilUser = perfil.value
 
         let usuario = {
@@ -119,18 +118,19 @@
             perfil: perfilUser
         };
 
-        localStorage.setItem(email, JSON.stringify(usuario));
-
-        if (numNome) {
-            mensagem.innerHTML = `<span style="color: red;">Nome inválido!</span>`
-        } else if (!tem_arroba || !termina_com_sptech) {
+        
+        if (nome == "" || email == "" || senha == "" || confirmacao == "" || perfilUser == "") {
+            mensagem.innerHTML = `<span style="color: red;">Há campo(s) <br> em branco</span>`;
+        } else if (numNome) {
+            mensagem.innerHTML = `<span style="color: red;">Nome não pode <br> conter números!</span>`;
+        } else if (!email.includes('@') || !email.endsWith('sptech.school')) {
             mensagem.innerHTML = `<span style="color: red;">E-mail inválido</span>`;
         } else if (confirmacao != senha) {
-            mensagem.innerHTML = `<span style="color: red;">Erro na confirmação da senha!</span>`
+            mensagem.innerHTML = `<span style="color: red;">Erro na confirmação <br> da senha!</span>`;
         } else {
-            mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
+            localStorage.setItem(email, JSON.stringify(usuario));
+            mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado <br>com sucesso!</span>`;
         }
-
     }
 
 </script>
