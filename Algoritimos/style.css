@@ -34,6 +34,7 @@ html {
 }
 
 .titulo {
+    display: block;
     font-size: 30px;
     color: #edcd7a;
 }
@@ -244,6 +245,7 @@ html {
     font-size: 23px;
     color: #ffff;
     font-weight: 700;
+    margin-bottom: 10%;
 }
 
 .titulo-div02 {
@@ -251,6 +253,17 @@ html {
     font-size: 23px;
     color: #000000;
     font-weight: 700;
+    margin-bottom: 7%;
+}
+
+.titulo-div03 {
+
+    margin-top: 5%;
+    margin-right: 40px;
+    font-size: 23px;
+    color: #000000;
+    font-weight: 700;
+    margin-bottom: 7%;
 }
 
 .input-perguntas {
@@ -400,9 +413,9 @@ html {
 /* calculando dados da simulacao*/
 .container-resposta {
     background-color: #885630;
-    height: 670px;
+    color: #885630;
+    height: 600px;
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
@@ -413,21 +426,11 @@ html {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    color: #241c08;
+    gap: 20px;
 }
 
-
-.card-mensagens {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    background-color: #d9d9d9;
-    border-radius: 15px;
-    width: 330px;
-    height: 200px;
-    align-items: center;
-}
 
 .card-mensagens02 {
     display: flex;
@@ -439,7 +442,7 @@ html {
     align-self: center;
     border-radius: 15px;
     width: 330px;
-    height: 200px;
+    height: 300px;
     align-items: center;
 }
 
@@ -706,7 +709,7 @@ html {
 }
 
 .produto .container2 .texto {
-    text-align:  center;
+    text-align: center;
     font-size: 30px;
     max-width: 450px;
 }

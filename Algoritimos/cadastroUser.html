@@ -13,7 +13,7 @@
 
     <div class="header">
         <div class="logo">
-            <a href="index.html"><img src="img/logo.png" alt="" width="60px" height="auto"></a>
+            <a href="index.html"><img src="img/logo.png" alt=""width="60px" height="auto"></a>
         </div>
         <div class="rotas">
             <a href="simulador.html">Simulador Financeiro</a>
@@ -23,19 +23,22 @@
         </div>
     </div>
 
-    <div class="cadastro">
-        <div class="container">
-            <div class="titulo">
-                <h2>Conte conosco <br> para uma <br> experiência <br> incrível.</h2>
-            </div>
+    <div class="cadastro-func">
+        <div class="container-func">
 
-            <div class="forms">
+            <div class="forms-func">
 
-                <h3>Cadastre-se:</h3>
+              
+                <h3>Cadastre seus Funcionários:</h3>    
 
                 <div class="input-group">
                     <img src="img/nome.png" alt="">
-                    <input type="text" id="input_nome" placeholder="Nome:"><br><br>
+                    <input type="text" id="input_nome" placeholder="Nome Completo:"><br><br>
+                </div>
+
+                <div class="input-group email">
+                    <img src="img/cpf.png" alt="">
+                    <input type="text" id="input_cpf" placeholder="CPF: "><br><br>
                 </div>
 
                 <div class="input-group email">
@@ -52,13 +55,6 @@
                     <img src="img/segurança.png" alt="">
                     <input type="text" id="input_confirmar" placeholder="Confirmar Senha:"><br><br>
                 </div>
-
-                <select id="perfil">
-                    <option value="">Selecione o perfil</option>
-                    <option value="administrador">Administrador</option>
-                    <option value="gerente">Gerente</option>
-                    <option value="supervisor">Supervisor</option>
-                </select>
 
                 <div class="input-group botao">
                     <img src="img/entrar.png" alt="">
@@ -106,17 +102,17 @@
         let nome = input_nome.value
         let email = input_email.value;
         let senha = ipt_senha.value;
+        let cpf = input_cpf.value
         let confirmacao = input_confirmar.value
         let termina_com_sptech = email.endsWith('sptech.school');
         let tem_arroba = email.indexOf('@') != -1;
         let numNome = nome.indexOf('0') != -1;
-        let perfilUser = perfil.value
 
         let usuario = {
             nome: nome,
             email: email,
             senha: senha,
-            perfil: perfilUser
+            cpf: cpf,
         };
 
         localStorage.setItem(email, JSON.stringify(usuario));
@@ -130,7 +126,5 @@
         } else {
             mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
         }
-
     }
-
 </script>

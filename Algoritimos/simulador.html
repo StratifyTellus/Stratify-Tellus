@@ -98,20 +98,15 @@
             </div>
 
         </div>
-        <button class="btn-simular" onclick="Calcular()">Simular</button>
-
+        <button class="btn-simular" onclick="calcular()">Simular</button>
     </div>
     <div class="container-resposta">
-        <div class="titulo-div">
-            <p>De acordo com os dados fornecidos você enfrenta em média:</p>
-        </div>
-
         <div id="mensagemFinal"> <!--resposta da simulacao-->
         </div>
     </div>
 </body>
 <script>
-    function Calcular() {
+    function calcular() {
 
         // Total de prejuízos por paralisacao
         let diasP = Number(input_dias_paralisacao.value);
@@ -144,19 +139,21 @@
         let valorContratual = sensor + custoInstalacao + 50000 // Valor estabelecido a ser pago pela contratante pelos serviços Stratify
 
 
-        mensagemFinal.innerHTML = "";
+        mensagemFinal.innerHTML += `
+        
+          <div class="titulo-div02">
+            <span id="show-title">De acordo com os dados fornecidos você enfrenta em média:</span>
+        </div>
+        `;
 
         let mensagens = [
             `<p class="p_mensagem"> R$ ${totalParalisacao.toLocaleString('pt-BR')} de custos em caso de paralisação </p>`,
             `<p class="p_mensagem"> R$ ${totalIndenizacoes.toLocaleString('pt-BR')} em caso de indenizações</p>`,
-            `<p class="p_mensagem"> R$ ${areaReparada.toLocaleString('pt-BR')} com custos de reparação <br> <br>
-        Receita diária aproximada: R$ ${receitaD.toLocaleString('pt-BR')}</b> <br>
-        Perda com os dias de paralização: R$ ${comparacaoParalisacao.toLocaleString('pt-BR')} <br>
+            `<p class="p_mensagem"> R$ ${areaReparada.toLocaleString('pt-BR')} com custos de reparação <br> <br> 
+        Receita diária aproximada: R$ ${receitaD.toLocaleString('pt-BR')}</b> <br> <br>
+        Perda com os dias de paralização: R$ ${comparacaoParalisacao.toLocaleString('pt-BR')} <br> <br>
         Total de prejuízos: R$ ${totalPrejuizos.toLocaleString('pt-BR')}</b></p>`
         ];
-
-
-
 
         for (let contador = 0; contador < mensagens.length; contador++) {
             mensagemFinal.innerHTML += `
@@ -179,6 +176,9 @@
         `
 
     }
+
+    
+    
 </script>
 
 </html>
