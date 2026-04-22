@@ -5,7 +5,7 @@ body{
 }
 
 .header-left {
-position: fixed;
+    position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
@@ -31,24 +31,20 @@ a {
     margin-left: 18%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
+    
 }
 
 h1{
-    font-family: 'Montserrat', sans-serif;
-}
-.titulo-dashboard {
-    margin-left: 40px;
-    margin-bottom: 5px; 
-    font-size: 40px;
-    font-weight: 700;
-    font-family: 'Telegraf', sans-serif; 
+       font-family: 'Montserrat', sans-serif;
 }
 
-.metrica-dashboard {
+.titulo-dashboard {
+    display: flex;
+    justify-content: flex-start;
     margin-left: 40px;
-    margin-top: 0;
-    font-size: 20px;
+    color: #000;
+    font-family: 40px;
     font-weight: 700;
     font-family: 'Telegraf', sans-serif; 
 }
@@ -61,7 +57,7 @@ h1{
     height: 150px;
     margin-left: 6%;
     gap: 20px;
-    margin-bottom: 25px;
+    
 }
 
 .card-kpi{
@@ -69,9 +65,10 @@ h1{
     display: flex;
     flex-direction: column;
     width: 200px;
-    background-color: #edcd7a; 
+    background-color: #c48c62; 
     border-radius: 5px;
     padding: 8px 15px;
+    
 }
 
 .card{
@@ -88,41 +85,43 @@ h1{
     height: 56px;
     font-size: 30px;
     font-weight: 700;
+    
+    
 }
 span {
     font-weight: 700;
     font-family: 'Arial', sans-serif;    
     font-size: 15px;
+    
 }
 
 .container-graficos {
     background-color: rgb(225, 230, 230);
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 20px;
+    justify-content: center;
+    width: 99%;
+    padding-left: 10px;
+    flex-direction: row;
 }
 
-.linha-topo {
+.card-grafico{
+    height: 580px;
+    margin-left: 70px;
+    width: 40%;
     display: flex;
-    gap:100px;
-    align-items: flex-start;
-}
-
-.lado-tabelas {
-    display: flex;
+    justify-content: center;
     flex-direction: column;
     gap: 20px;
-    width: 25%;
 }
 
-.card-grafico {
-    height: auto; 
-    margin-left: 50px;
-    width: 50%; 
+.card-grafico2{
+    margin: auto;
+    width: 60%;
+    height: 730px;
     display: flex;
-    flex-direction: column; 
-    gap: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .banner1, .banner2 {
@@ -140,6 +139,7 @@ span {
     justify-content: flex-start;
     color: #000;
     font-family: 'Telegraf', sans-serif; 
+    
 }
 
 .grafico1{
@@ -155,35 +155,31 @@ span {
 }
 
 .div-grafico2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    margin-bottom: 0;
+    margin-left: 10%;
+    align-self:flex-start;
 }
-
+    
 .grafico-pizza {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.div-tabela {
     display: flex;
-    flex-direction: column;
+    width: 400px;
 }
-
+    
+.div-tabela {
+    margin-top: 10px;
+    justify-content: center;
+    align-self: center;
+}
+    
 table {
-    width: 100%;
-    border-collapse: collapse;
+    align-items: center;
+    border-radius: 6px;
+    padding: 10px;
     font-family: 'Telegraf', sans-serif; 
     background-color: #e6d9c3;
 }
 
-td, th  {
-    align-items: center;
+th  {
+    align-self: center;
 }
 
 .regiao-selecionada{
