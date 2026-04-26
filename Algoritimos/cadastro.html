@@ -13,11 +13,12 @@
 
     <div class="header">
         <div class="logo">
-            <a href="index.html"><img src="img/logo.png" alt="" width="60px" height="auto"></a>
+            <a href="index.html"><img src="img/logo.png" alt=""width="60px" height="auto"></a>
         </div>
         <div class="rotas">
-            <a href="index.html">Home</a>
-            <a href="cadastroUser.html">Cadastrar Funcionário</a>
+            <a href="simulador.html">Simulador Financeiro</a>
+            <a href="quemSomos.html">Quem Somos</a>
+            <a href="produto.html">Nosso Produto</a>
             <a href="login.html">Login</a>
         </div>
     </div>
@@ -34,7 +35,7 @@
 
                 <div class="input-group">
                     <img src="img/nome.png" alt="">
-                    <input type="text" id="input_nome" placeholder="Nome:"><br><br>
+                    <input type="text" id="input_nome" placeholder="Nome Completo:"><br><br>
                 </div>
 
                 <div class="input-group email">
@@ -52,22 +53,12 @@
                     <input type="text" id="input_confirmar" placeholder="Confirmar Senha:"><br><br>
                 </div>
 
-                <select id="perfil">
-                    <option value="" selected disabled>Selecione o perfil</option>
-                    <option value="administrador">Administrador</option>
-                    <option value="gerente">Gerente</option>
-                    <option value="supervisor">Supervisor</option>
-                </select>
-
                 <div class="input-group botao">
                     <img src="img/entrar.png" alt="">
-
                     <button onclick="cadastro()">Cadastrar</button>
-                    
                 </div>
 
-                <div id="mensagem" class="mensagem-span"></div>
-
+                <div id="mensagem"></div>
             </div>
         </div>
     </div>
@@ -111,29 +102,18 @@
         let confirmacao = input_confirmar.value
         let termina_com_sptech = email.endsWith('sptech.school');
         let tem_arroba = email.indexOf('@') != -1;
-        let numNome = /\d/.test(nome);
-        let perfilUser = perfil.value
+        let numNome = nome.indexOf('0') != -1;
 
-        let usuario = {
-            nome: nome,
-            email: email,
-            senha: senha,
-            perfil: perfilUser
-        };
-
-        
-        if (nome == "" || email == "" || senha == "" || confirmacao == "" || perfilUser == "") {
-            mensagem.innerHTML = `<span style="color: red;">Há campo(s) <br> em branco</span>`;
-        } else if (numNome) {
-            mensagem.innerHTML = `<span style="color: red;">Nome não pode <br> conter números!</span>`;
-        } else if (!email.includes('@') || !email.endsWith('sptech.school')) {
+        if (numNome) {
+            mensagem.innerHTML = `<span style="color: red;">Nome inválido!</span>`
+        } else if (senha !== 'Stratify') {
+            mensagem.innerHTML = `<span style="color: red;">Senha inválida!</span>`;
+        } else if (!tem_arroba || !termina_com_sptech) {
             mensagem.innerHTML = `<span style="color: red;">E-mail inválido</span>`;
         } else if (confirmacao != senha) {
-            mensagem.innerHTML = `<span style="color: red;">Erro na confirmação <br> da senha!</span>`;
+            mensagem.innerHTML = `<span style="color: red;">Erro na confirmação da senha!</span>`
         } else {
-            localStorage.setItem(email, JSON.stringify(usuario));
-            mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado <br>com sucesso!</span>`;
+            mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
         }
     }
-
 </script>
