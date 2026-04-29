@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Stratify | Dashboard</title>
     <link rel="stylesheet" href="style2.css">
     <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -12,7 +12,6 @@
 
 
 <body>
-
     <div class="janela">
         <div class="header-left">
             <h1>Stratify.</h1>
@@ -21,24 +20,25 @@
                 <p>Olá, <span>usuário</span>!</p>
                 <p>Bem vindo a sua <span>Dash</span>!</p>
             </div>
-            <div class="btn-cadastro-func">
-                <a id="btnCadastrar" style="display: none;" href="cadastroUser.html">Cadastrar Funcionários</a>
-            </div>
-            <div class="btn-logout" onclick="limparSessao()">
-                <a href="index.html">
-                    <h3>Sair</h3>
+            <div class="btn-logout"">
+                <a href=" cadastroUser.html">
+                <h3>Cadastrar Funcionário</h3>
                 </a>
+                <div class="btn-logout" onclick="limparSessao()">
+                    <a href="index.html">
+                        <h3>Sair</h3>
+                    </a>
+                </div>
             </div>
-
         </div>
 
         <div class="container-dashboard">
-            <p class="titulo-dashboard">Painel de Monitoramento - Juíz de Fora</p>
-            <p class="metrica-dashboard">Métrica de Desempenho de Abril</p>
+            <p class="titulo-dashboard">Painel de Monitoramento - Mineração Vale Verde</p>
+            <p class="metrica-dashboard">Métrica de Desempenho de Maio</p>
             <div class="kpis">
                 <div class="card-kpi">
                     <p class="card">Total Monitorações</p>
-                    <span class="valor">72</span>
+                    <span class="valor">96</span>
                     <span>Monitorações Diárias:</span>
                     <span>24</span>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="card-kpi">
                     <h2 class="card">Total alertas com Risco Moderado<br><br>
-                        <span class="valor" style="color: yellow;"><b></b><br>23%</span>
+                        <span class="valor" style="color: rgb(251, 217, 93);"><b></b><br>23%</span>
                     </h2>
                 </div>
                 <div class="card-kpi">
@@ -89,14 +89,12 @@
                     <div class="lado-tabelas">
                         <div class="div-tabela">
                             <div class="titulo-grafico">
-                                <p>Classifição conforme região</p>
+                                <p>Classifição conforme umidade</p>
                             </div>
                             <table>
                                 <thead>
                                     <tr>
                                         <th>Sensor</th>
-                                        <th>Localidade</th>
-                                        <th>Estado</th>
                                         <th>Umidade Total</th>
                                         <th>Risco</th>
                                     </tr>
@@ -104,77 +102,70 @@
                                 <tbody>
                                     <tr class="regiao-selecionada">
                                         <td>Sensor 1001</td>
-                                        <td>Juiz de Fora</td>
-                                        <td>MG</td>
                                         <td>49%</td>
                                         <td class="moderado">Moderado</td>
                                     </tr>
                                     <tr>
                                         <td>Sensor 1002</td>
-                                        <td>São Roque</td>
-                                        <td>SP</td>
                                         <td>70%</td>
                                         <td class="alto">Alto</td>
                                     </tr>
                                     <tr>
                                         <td>Sensor 1003</td>
-                                        <td>Euclides da Cunha</td>
-                                        <td>BA</td>
                                         <td>21%</td>
                                         <td class="baixo">Baixo</td>
                                     </tr>
                                     <tr>
                                         <td>Sensor 1004</td>
-                                        <td>Rio Branco</td>
-                                        <td>AC</td>
                                         <td>81%</td>
                                         <td class="critico">Crítico</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="div-tabela">
-                            <div class="titulo-grafico">
-                                <p>Definição de faixas</p>
-                            </div>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Risco</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="regiao-selecionada">
-                                        <td>Umidade < 30%</td>
-                                        <td class="baixo">Baixo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Umidade 30% e 60% </td>
-                                        <td class="moderado">moderado</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Umidade 60% e 80%</td>
-                                        <td class="alto">Alto</td>
-                                    </tr>
-                                    <tr>
-                                        <td>umidade > 80%</td>
-                                        <td class="critico">Crítico</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
                         <!-- Gráfico de Pizza-->
                         <div class="card-grafico2">
                             <div class="div-grafico2">
                                 <div class="grafico-pizza">
                                     <div class="titulo-grafico">
-                                        <p>Classificação de Risco</p>
+                                        <p>Classificação de Risco Diário</p>
                                     </div>
                                     <canvas id="myChart3" class="grafico3"></canvas>
                                 </div>
                             </div>
+
+                            <div class="div-tabela">
+                                <div class="titulo-grafico">
+                                    <p>Definição de faixas</p>
+                                </div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Risco</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="regiao-selecionada">
+                                            <td>Umidade < 30%</td>
+                                            <td class="baixo">Baixo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Umidade 30% e 60% </td>
+                                            <td class="moderado">moderado</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Umidade 60% e 80%</td>
+                                            <td class="alto">Alto</td>
+                                        </tr>
+                                        <tr>
+                                            <td>umidade > 80%</td>
+                                            <td class="critico">Crítico</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -223,12 +214,12 @@
     new Chart(ctx2, {
         type: 'bar',
         data: {
-            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril'],
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
             datasets: [{
                 label: 'Umidade Média',
                 borderColor: '#563c27',
                 backgroundColor: '#563c27',
-                data: ['56', '40', '60', '70', '80', '30', '40', '30', '20'],
+                data: ['56', '40', '60', '70', '10'],
                 borderWidth: 1
             }
             ]
@@ -268,25 +259,7 @@
             }
         }
     });
-
-    function aparecerBotao() {
-        let usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
-
-
-        if (usuario.perfil == 'administrador') {
-            // Se for admin, mostra o botão
-            btnCadastrar.style.display = 'block';
-        } else {
-            // Se não for admin, garante que o botão fique escondido
-            btnCadastrar.style.display = 'none';
-        }
-
-    }
-    window.onload = aparecerBotao;
-
-
 </script>
-
 
 <script>
     const myChart = new Chart(

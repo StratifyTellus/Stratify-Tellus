@@ -18,7 +18,7 @@ position: fixed;
   border-right: 3px solid #ffffff;
   background-color: #885630;
   color:#fff;
-    font-family: 'Telegraf', sans-serif; 
+    font-family: 'Telegraf', sans-serif;
 }
 
 a {
@@ -39,10 +39,10 @@ h1{
 }
 .titulo-dashboard {
     margin-left: 40px;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     font-size: 40px;
     font-weight: 700;
-    font-family: 'Telegraf', sans-serif; 
+    font-family: 'Telegraf', sans-serif;
 }
 
 .metrica-dashboard {
@@ -50,7 +50,7 @@ h1{
     margin-top: 0;
     font-size: 20px;
     font-weight: 700;
-    font-family: 'Telegraf', sans-serif; 
+    font-family: 'Telegraf', sans-serif;
 }
 
 .kpis{
@@ -70,7 +70,7 @@ h1{
     flex-direction: column;
     width: 200px;
     background-color: white;
-    border: solid #C48C62 1px; 
+    border: solid #C48C62 1px;
     border-radius: 5px;
     padding: 8px 15px;
 }
@@ -118,12 +118,22 @@ span {
 }
 
 .card-grafico {
-    height: auto; 
+    height: auto;
     margin-left: 50px;
-    width: 50%; 
+    width: 40%;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 50px;
+}
+
+.card-grafico2 {
+    height: auto;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: baseline;
+    gap: 20px;
 }
 
 .banner1, .banner2 {
@@ -140,7 +150,7 @@ span {
     flex-direction: row;
     justify-content: flex-start;
     color: #000;
-    font-family: 'Telegraf', sans-serif; 
+    font-family: 'Telegraf', sans-serif;
 }
 
 .grafico1{
@@ -153,17 +163,19 @@ span {
     padding: 10px;
     background-color: #ffffff;
     border-radius: 10px;
+
 }
 
 .div-grafico2 {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     margin-bottom: 0;
+   
 }
 
 .grafico-pizza {
-    width: 100%;
+    width: 94%;
     max-width: 400px;
     margin: 0 auto;
     background-color: #fff;
@@ -173,13 +185,18 @@ span {
 
 .div-tabela {
     display: flex;
+    width: 100%;
     flex-direction: column;
 }
 
+.div-tabela tr {
+    margin-right: 320px;
+}
+
 table {
-    width: 100%;
+    width: 300px;
     border-collapse: collapse;
-    font-family: 'Telegraf', sans-serif; 
+    font-family: 'Telegraf', sans-serif;
     background-color: #e6d9c3;
 }
 
