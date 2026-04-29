@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
     <div class="header">
         <div class="logo">
             <a href="index.html"><img src="img/logo.png" alt="" width="60px" height="auto"></a>
@@ -19,7 +20,7 @@
             <a href="quemSomos.html">Quem Somos</a>
             <a href="produto.html">Nosso Produto</a>
             <a href="cadastro.html">Cadastro</a>
-            <a href="loginUser.html">Login Funcionário</a>
+            <a href="login.html">Login</a>
         </div>
     </div>
 
@@ -34,15 +35,19 @@
                 <h3>Login:</h3>
 
                 <div class="input-group email">
+                    <img src="" alt="">
+                    <input type="text" id="input_cod" placeholder="Código da empresa:"> <br><br>
+                </div>
+
+                <div class="input-group email">
                     <img src="img/email.png" alt="">
                     <input type="text" id="input_email" placeholder="E-mail:"> <br><br>
                 </div>
 
                 <div class="input-group">
                     <img src="img/segurança.png" alt="">
-                    <input type="password" id="ipt_senha" placeholder="Senha:" oninput="Analisar()"><br><br>
+                    <input type="password" id="ipt_senha" placeholder="Senha:"><br><br>
                 </div>
-
 
                 <div class="input-group botao">
                     <img src="img/entrar.png" alt="">
@@ -59,19 +64,32 @@
 
 <script>
     function login() {
+        let codEmpresa = input_cod.value
         let email = input_email.value;
         let senha = ipt_senha.value;
 
-        if (email != 'stratify@sptech.school') {
-            mensagem.innerHTML = `<span style="color: red;">E-mail e/ou senha inválido!</span>`
-        } else if (senha != 'Stratify') {
-            mensagem.innerHTML = `<span style="color: red;">E-mail e/ou senha inválido!</span>`
+        let usuarioSalvo = localStorage.getItem(email);
+
+        if (usuarioSalvo == null) {
+            alert("Usuário não encontrado");
+            return;
+        }
+
+        let usuario = JSON.parse(usuarioSalvo);
+
+        if (usuario.senha != senha) {
+            alert("Senha incorreta");
+            return;
+        }
+
+        if (codEmpresa != '1234') {
+            mensagem.innerHTML = `<span style="color: red;">Código da empresa inválido!</span>`
         } else {
             mensagem.innerHTML = `<span style="color: green;">Login efetuado com sucesso!</span>`
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
             setTimeout(function () {
                 window.location = ".//dashboard.html";
             }, 1000); // apenas para exibir o loading
-
         }
 
     }

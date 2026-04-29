@@ -13,7 +13,7 @@
 
     <div class="header">
         <div class="logo">
-            <a href="index.html"><img src="img/logo.png" alt=""width="60px" height="auto"></a>
+            <a href="index.html"><img src="img/logo.png" alt="" width="60px" height="auto"></a>
         </div>
         <div class="rotas">
             <a href="simulador.html">Simulador Financeiro</a>
@@ -35,7 +35,7 @@
 
                 <div class="input-group">
                     <img src="img/nome.png" alt="">
-                    <input type="text" id="input_nome" placeholder="Nome Completo:"><br><br>
+                    <input type="text" id="input_nome" placeholder="Nome:"><br><br>
                 </div>
 
                 <div class="input-group email">
@@ -52,6 +52,11 @@
                     <img src="img/segurança.png" alt="">
                     <input type="text" id="input_confirmar" placeholder="Confirmar Senha:"><br><br>
                 </div>
+
+                <select id="perfil">
+                    <option value="">Selecione o perfil</option>
+                    <option value="administrador">Administrador</option>
+                </select>
 
                 <div class="input-group botao">
                     <img src="img/entrar.png" alt="">
@@ -103,11 +108,19 @@
         let termina_com_sptech = email.endsWith('sptech.school');
         let tem_arroba = email.indexOf('@') != -1;
         let numNome = nome.indexOf('0') != -1;
+        let perfilUser = perfil.value
+
+        let usuario = {
+            nome: nome,
+            email: email,
+            senha: senha,
+            perfil: perfilUser
+        };
+
+        localStorage.setItem(email, JSON.stringify(usuario));
 
         if (numNome) {
             mensagem.innerHTML = `<span style="color: red;">Nome inválido!</span>`
-        } else if (senha !== 'Stratify') {
-            mensagem.innerHTML = `<span style="color: red;">Senha inválida!</span>`;
         } else if (!tem_arroba || !termina_com_sptech) {
             mensagem.innerHTML = `<span style="color: red;">E-mail inválido</span>`;
         } else if (confirmacao != senha) {
@@ -115,5 +128,7 @@
         } else {
             mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
         }
+
     }
+
 </script>
