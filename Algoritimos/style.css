@@ -30,7 +30,6 @@ html {
     padding: 20px;
     width: 900px;
     height: 400px;
-    gap: 200px;
     margin-top: 57px;
 }
 
@@ -43,26 +42,29 @@ html {
     font-size: 30px;
     color: white;
     margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .forms {
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
-.forms button {
-    width: 120px;
-    height: 50px;
-    margin: 0 auto;
-    padding: 15px;
+.forms .proxima-pagina button {
+    display: inline-block; 
+    padding: 10px 20px; 
     border: none;
     border-radius: 5px;
+    margin-top: 30px; 
+    margin-bottom: 20px; 
     cursor: pointer;
     background-color: #885630;
-    color: #ece0cd;
-    font-size: 18px;
+    text-decoration: none;
+    color: white; 
 }
 
 .forms input {
@@ -86,7 +88,30 @@ html {
     margin-bottom: 20px;
 }
 
+.input-group .botao {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 
+.input-group-pai{
+    display: flex;
+    flex-direction: row;
+}
+
+.forms select{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align-last: center;
+    border-radius: 5px;
+    border: none;
+    border: 2px solid #edcd7a;
+    color: #000000;
+
+}
 
 .login {
     display: flex;
@@ -715,23 +740,35 @@ html {
 }
 
 .forms-func {
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: -70px;
+}
+
+.forms-func select{
+    border-radius: 5px;
+    border: none;
+    border: 2px solid #edcd7a;
+}
+
+.proxima-pagina a{
+    color: white;
 }
 
 .input-group button {
-    width: 100%;
-    height: 50px;
-    padding: 10px;
+    display: inline-block; 
+    padding: 10px 20px; 
     border: none;
     border-radius: 5px;
+    margin-top: 30px; 
+    margin-bottom: 20px; 
     cursor: pointer;
     background-color: #885630;
-    color: #ece0cd;
-    font-size: 18px;
+    text-decoration: none;
+    color: white; 
+    width: 89%;
 }
 .input-group {
     width: 100%;
@@ -742,7 +779,7 @@ html {
     padding: 10px;
     border-radius: 5px;
     border: 2px solid #edcd7a;
-    box-sizing: border-box; /* garante que padding e borda não ultrapassem a largura */
+    box-sizing: border-box; 
 }
 
 .forms-func img {

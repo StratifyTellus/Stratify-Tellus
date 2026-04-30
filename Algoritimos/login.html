@@ -35,11 +35,6 @@
                 <h3>Login:</h3>
 
                 <div class="input-group email">
-                    <img src="" alt="">
-                    <input type="text" id="input_cod" placeholder="Código da empresa:"> <br><br>
-                </div>
-
-                <div class="input-group email">
                     <img src="img/email.png" alt="">
                     <input type="text" id="input_email" placeholder="E-mail:"> <br><br>
                 </div>
@@ -58,13 +53,19 @@
             </div>
         </div>
     </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Stratify. Todos os direitos reservados a empresa Stratify.</p>
+            <ul class="footer-links"></ul>
+        </div>
+    </footer>
 </body>
 
 </html>
 
 <script>
     function login() {
-        let codEmpresa = input_cod.value
         let email = input_email.value;
         let senha = ipt_senha.value;
 
@@ -80,10 +81,6 @@
         if (usuario.senha != senha) {
             alert("Senha incorreta");
             return;
-        }
-
-        if (codEmpresa != '1234') {
-            mensagem.innerHTML = `<span style="color: red;">Código da empresa inválido!</span>`
         } else {
             mensagem.innerHTML = `<span style="color: green;">Login efetuado com sucesso!</span>`
             localStorage.setItem("usuarioLogado", JSON.stringify(usuario));

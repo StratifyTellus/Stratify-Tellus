@@ -20,16 +20,15 @@
                 <p>Olá, <span>usuário</span>!</p>
                 <p>Bem vindo a sua <span>Dash</span>!</p>
             </div>
-            <div class="btn-logout"">
-                <a href=" cadastroUser.html">
-                <h3>Cadastrar Funcionário</h3>
-                </a>
-                <div class="btn-logout" onclick="limparSessao()">
-                    <a href="index.html">
-                        <h3>Sair</h3>
-                    </a>
-                </div>
+            <div class="btn-cadastro-func">
+                <a id="btnCadastrar" style="display: none;" href="cadastroUser.html">Cadastrar Funcionários</a>
             </div>
+            <div class="btn-logout" onclick="limparSessao()">
+                <a href="index.html">
+                    <h3>Sair</h3>
+                </a>
+            </div>
+
         </div>
 
         <div class="container-dashboard">
@@ -259,6 +258,22 @@
             }
         }
     });
+
+    function aparecerBotao() {
+        let usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+
+        if (usuario.perfil == 'representante') {
+            // Se for admin, mostra o botão
+            btnCadastrar.style.display = 'block';
+        } else {
+            // Se não for admin, garante que o botão fique escondido
+            btnCadastrar.style.display = 'none';
+        }
+
+    }
+    window.onload = aparecerBotao;
+    
 </script>
 
 <script>

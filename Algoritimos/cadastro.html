@@ -33,33 +33,54 @@
 
                 <h3>Cadastre-se:</h3>
 
-                <div class="input-group">
-                    <img src="img/nome.png" alt="">
-                    <input type="text" id="input_nome" placeholder="Nome:"><br><br>
+                <div class="input-group-pai">
+
+                    <div class="input-group1">
+                        <div class="input-group">
+                            <img src="img/nome.png" alt="">
+                            <input type="text" id="input_social" placeholder="Razão social da empresa:"><br><br>
+                        </div>
+
+                        <div class="input-group">
+                            <img src="img/nome.png" alt="">
+                            <input type="text" id="input_cnpj" placeholder="CNPJ:"><br><br>
+                        </div>
+
+                        <div class="input-group">
+                            <img src="img/nome.png" alt="">
+                            <input type="text" id="input_nome" placeholder="Seu Nome:"><br><br>
+                        </div>
+                    </div>
+
+                    <div class="input-group2">
+                        <div class="input-group email">
+                            <img src="img/email.png" alt="">
+                            <input type="text" id="input_email" placeholder="E-mail:"> <br><br>
+                        </div>
+
+                        <div class="input-group">
+                            <img src="img/segurança.png" alt="">
+                            <input type="password" id="ipt_senha" placeholder="Senha:" oninput="Analisar()"><br><br>
+                        </div>
+
+                        <div class="input-group">
+                            <img src="img/segurança.png" alt="">
+                            <input type="password" id="input_confirmar" placeholder="Confirmar Senha:"><br><br>
+                        </div>
+
+
+                    </div>
+
                 </div>
 
-                <div class="input-group email">
-                    <img src="img/email.png" alt="">
-                    <input type="text" id="input_email" placeholder="E-mail:"> <br><br>
+                <div class="div-select">
+                    <select id="perfil">
+                        <option value="">Selecione o perfil</option>
+                        <option value="representante">Representante</option>
+                    </select>
                 </div>
 
-                <div class="input-group">
-                    <img src="img/segurança.png" alt="">
-                    <input type="text" id="ipt_senha" placeholder="Senha:" oninput="Analisar()"><br><br>
-                </div>
-
-                <div class="input-group">
-                    <img src="img/segurança.png" alt="">
-                    <input type="text" id="input_confirmar" placeholder="Confirmar Senha:"><br><br>
-                </div>
-
-                <select id="perfil">
-                    <option value="">Selecione o perfil</option>
-                    <option value="administrador">Administrador</option>
-                </select>
-
-                <div class="input-group botao">
-                    <img src="img/entrar.png" alt="">
+                <div class="proxima-pagina">
                     <button onclick="cadastro()">Cadastrar</button>
                 </div>
 
@@ -67,6 +88,13 @@
             </div>
         </div>
     </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Stratify. Todos os direitos reservados a empresa Stratify.</p>
+            <ul class="footer-links"></ul>
+        </div>
+    </footer>
 </body>
 
 </html>
@@ -101,6 +129,8 @@
     }
 
     function cadastro() {
+        let empresa = input_social.value
+        let cnpj = input_cnpj.value
         let nome = input_nome.value
         let email = input_email.value;
         let senha = ipt_senha.value;
@@ -111,22 +141,34 @@
         let perfilUser = perfil.value
 
         let usuario = {
+            empresa: empresa,
+            cnpj: cnpj,
             nome: nome,
             email: email,
             senha: senha,
-            perfil: perfilUser
+            perfil: perfilUser,
         };
 
         localStorage.setItem(email, JSON.stringify(usuario));
 
-        if (numNome) {
+        if (empresa == "" || cnpj == "" || nome == "" || email == "" || senha == "" || confirmacao == "" || perfilUser == "") {
+            mensagem.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
+        } else if (empresa = empresa.indexOf('0') != -1) {
+            mensagem.innerHTML = `<span style="color: red;">Empresa inválida!</span>`
+        } else if (cnpj.length != 14) {
+            mensagem.innerHTML = `<span style="color: red;">CNPJ inválido!</span>`
+        } else if (nome = nome.indexOf('0') != -1) {
             mensagem.innerHTML = `<span style="color: red;">Nome inválido!</span>`
         } else if (!tem_arroba || !termina_com_sptech) {
             mensagem.innerHTML = `<span style="color: red;">E-mail inválido</span>`;
         } else if (confirmacao != senha) {
             mensagem.innerHTML = `<span style="color: red;">Erro na confirmação da senha!</span>`
-        } else {
-            mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
+        } else{
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+            mensagem.innerHTML = `<span style="color: green;">Redirecionando...</span>`
+            setTimeout(function () {
+                window.location = ".//cadastroEnd.html";
+            }, 1000);
         }
 
     }
