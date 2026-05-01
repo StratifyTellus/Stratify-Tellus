@@ -6,12 +6,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body style="margin: auto; display: flex; align-items: center; flex-direction: column; justify-content: center; background-color: antiquewhite; height: 100%;">
 
-    <h1>Graphics</h1>
-    <div style="display: flex;">
-        <div style="width: 50%;">
-        <canvas id="sensorAnalogico"></canvas>
+    <h1>Gráfico de Monitoramento do Sensor 1 </h1>
+    <div style="display: flex; width: 100%; justify-content: center; align-items: center; height: 50%; flex-direction: column;" >
+        <div style="width: 50%; background-color: aliceblue; border-radius: 10px; border: solid 2px #000;">
+        <canvas id="umidade"></canvas>
         </div>
         <!----div style="width: 50%;"--->
             <!----canvas id="sensorDigital"></canvas>-->
@@ -19,18 +19,22 @@
     </div>
 
     <script>
-        var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
-            type: 'line',
+        var umidade = new Chart(document.getElementById('umidade').getContext('2d'), {
+                        type: 'line',
             data: {
                 datasets: [{
-                    label: 'Analogico',
-                    borderColor: '#63B1BC',
-                    backgroundColor: '#ED145B'
+                    label: 'Umidade',
+                    borderColor: '#497ec9',
+                    backgroundColor: '#275391'
                 }]
             },
             options: {
                 scales: {
                     x: {
+                        title: {
+                            display: true,
+                            text: 'Segundo'
+                        },
                         beginAtZero: true
                     },
                     y: {
@@ -43,6 +47,7 @@
                 },
             }
         });
+
 
         
 
@@ -79,7 +84,7 @@
         }
 
         setInterval(() => {
-            obterDados(sensorAnalogico, 'analogico');
+            obterDados(umidade, 'analogico');
         }, 1000);
 
     </script>
