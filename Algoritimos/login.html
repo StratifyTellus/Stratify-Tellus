@@ -69,17 +69,27 @@
         let email = input_email.value;
         let senha = ipt_senha.value;
 
-        let usuarioSalvo = localStorage.getItem(email);
+        let usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-        if (usuarioSalvo == null) {
+        let campos = [
+            input_email,
+            ipt_senha,
+        ]
+
+        for (var i = 0; i < campos.length; i++) {
+            if (campos[i].value == "") {
+                mensagem.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
+                return false;
+            }
+        }
+
+        if (!usuario) {
             alert("Usuário não encontrado");
             return;
         }
 
-        let usuario = JSON.parse(usuarioSalvo);
-
-        if (usuario.senha != senha) {
-            alert("Senha incorreta");
+        if (usuario.email != email || usuario.senha != senha) {
+            alert("E-mail ou Senha incorretos");
             return;
         } else {
             mensagem.innerHTML = `<span style="color: green;">Login efetuado com sucesso!</span>`

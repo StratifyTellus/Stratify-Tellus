@@ -28,7 +28,6 @@
 
             <div class="forms-func">
 
-
                 <h3>Cadastre seus Funcionários:</h3>
 
                 <div class="input-group">
@@ -115,9 +114,59 @@
         let confirmacao = input_confirmar.value
         let termina_com_sptech = email.endsWith('sptech.school');
         let tem_arroba = email.indexOf('@') != -1;
-        let numNome = nome.indexOf('0') != -1;
         let perfilUser = perfil.value
 
+        let campos = [
+            input_nome,
+            input_email,
+            ipt_senha,
+            input_cpf,
+            input_confirmar,
+            perfil
+        ]
+
+        for (var i = 0; i < campos.length; i++) {
+            if (campos[i].value == "") {
+                mensagem.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
+                return false;
+            }
+        }
+
+        let numeros = "0123456789";
+        let temNumero = false;
+
+        for (let i = 0; i < numeros.length; i++) {
+            if (nome.includes(numeros[i])) {
+                temNumero = true;
+                break;
+            }
+        }
+
+        if (temNumero) {
+            mensagem.innerHTML = `<span style="color: red;">Nome inválido!</span>`
+            return;
+        } 
+        
+        if (cpf.length != 11) {
+            mensagem.innerHTML = `<span style="color: red;">CPF inválido</span>`
+            return;
+        } 
+        
+        if (!tem_arroba || !termina_com_sptech) {
+            mensagem.innerHTML = `<span style="color: red;">E-mail inválido</span>`;
+            return;
+        } 
+        
+        if (confirmacao != senha) {
+            mensagem.innerHTML = `<span style="color: red;">Erro na confirmação da senha!</span>`
+            return;
+        } 
+
+        if (cpf.length != 11) {
+            mensagem.innerHTML = `<span style="color: red;">CPF inválido</span>`
+            return;
+        } 
+        
         let usuario = {
             nome: nome,
             email: email,
@@ -126,20 +175,8 @@
             perfil: perfilUser
         };
 
-        localStorage.setItem(email, JSON.stringify(usuario));
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
 
-        if (numNome) {
-            mensagem.innerHTML = `<span style="color: red;">Nome inválido!</span>`
-        } else if (cpf.length != 11) {
-            mensagem.innerHTML = `<span style="color: red;">CPF inválido</span>`
-        } else if (!tem_arroba || !termina_com_sptech) {
-            mensagem.innerHTML = `<span style="color: red;">E-mail inválido</span>`;
-        } else if (confirmacao != senha) {
-            mensagem.innerHTML = `<span style="color: red;">Erro na confirmação da senha!</span>`
-        } else if (cpf.length != 11) {
-            mensagem.innerHTML = `<span style="color: red;">CPF inválido</span>`
-        } else {
-            mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
-        }
+        mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
     }
 </script>

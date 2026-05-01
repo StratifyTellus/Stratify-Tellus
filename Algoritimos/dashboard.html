@@ -37,7 +37,7 @@
             <div class="kpis">
                 <div class="card-kpi">
                     <p class="card">Total Monitorações</p>
-                    <span class="valor">96</span>
+                    <span class="valor">72</span>
                     <span>Monitorações Diárias:</span>
                     <span>24</span>
                 </div>
@@ -83,9 +83,38 @@
                             <canvas id="myChart2" class="grafico2"></canvas>
                         </div>
                     </div>
-
                     <!-- Tabelas -->
                     <div class="lado-tabelas">
+                        <div class="div-tabela">
+                            <div class="titulo-grafico">
+                                <p>Definição de faixas</p>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Risco</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="regiao-selecionada">
+                                        <td>Umidade > 20% e < 30%</td>
+                                        <td class="baixo">Baixo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Umidade entre 30% e 60% </td>
+                                        <td class="moderado">moderado</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Umidade entre 61% e 80%</td>
+                                        <td class="alto">Alto</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Umidade < 20 e > 80%</td>
+                                        <td class="critico">Crítico</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="div-tabela">
                             <div class="titulo-grafico">
                                 <p>Classifição conforme umidade</p>
@@ -131,37 +160,6 @@
                                     </div>
                                     <canvas id="myChart3" class="grafico3"></canvas>
                                 </div>
-                            </div>
-
-                            <div class="div-tabela">
-                                <div class="titulo-grafico">
-                                    <p>Definição de faixas</p>
-                                </div>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Risco</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="regiao-selecionada">
-                                            <td>Umidade < 30%</td>
-                                            <td class="baixo">Baixo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Umidade 30% e 60% </td>
-                                            <td class="moderado">moderado</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Umidade 60% e 80%</td>
-                                            <td class="alto">Alto</td>
-                                        </tr>
-                                        <tr>
-                                            <td>umidade > 80%</td>
-                                            <td class="critico">Crítico</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
 
@@ -239,7 +237,7 @@
         data: {
             labels: ['Baixo', 'Moderado', 'Alto', 'Crítico'],
             datasets: [{
-                data: [7, 9, 6, 2],
+                data: [4, 10, 7, 3],
                 backgroundColor: [
                     '#4CAF50',
                     '#FFC107',
@@ -273,7 +271,7 @@
 
     }
     window.onload = aparecerBotao;
-    
+
 </script>
 
 <script>

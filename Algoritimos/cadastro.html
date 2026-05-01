@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="proxima-pagina">
-                    <button onclick="cadastro()">Cadastrar</button>
+                    <button onclick="cadastro()">Continuar</button>
                 </div>
 
                 <div id="mensagem"></div>
@@ -137,8 +137,59 @@
         let confirmacao = input_confirmar.value
         let termina_com_sptech = email.endsWith('sptech.school');
         let tem_arroba = email.indexOf('@') != -1;
-        let numNome = nome.indexOf('0') != -1;
-        let perfilUser = perfil.value
+        let perfilUser = perfil.value;
+
+        let campos = [
+            input_social,
+            input_cnpj,
+            input_nome,
+            input_email,
+            ipt_senha,
+            input_confirmar,
+            perfil
+        ]
+
+        for (var i = 0; i < campos.length; i++) {
+            if (campos[i].value == "") {
+                mensagem.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
+                return false;
+            }
+        }
+
+        if (empresa.length < 3) {
+            mensagem.innerHTML = "Nome da empresa muito curto!";
+            return;
+        }
+
+        if (cnpj.length != 14) {
+            mensagem.innerHTML = `<span style="color: red;">CNPJ inválido!</span>`
+            return;
+        }
+
+        let numeros = "0123456789";
+        let temNumero = false;
+
+        for (let i = 0; i < numeros.length; i++) {
+            if (nome.includes(numeros[i])) {
+                temNumero = true;
+                break;
+            }
+        }
+
+        if (temNumero) {
+            mensagem.innerHTML = `<span style="color: red;">Nome inválido!</span>`;
+            return;
+        }
+        
+        if (!tem_arroba || !termina_com_sptech) {
+            mensagem.innerHTML = `<span style="color: red;">E-mail inválido</span>`;
+            return;
+        }
+        
+        if (confirmacao != senha) {
+            mensagem.innerHTML = `<span style="color: red;">Erro na confirmação da senha!</span>`
+            return;
+        }
 
         let usuario = {
             empresa: empresa,
@@ -149,28 +200,12 @@
             perfil: perfilUser,
         };
 
-        localStorage.setItem(email, JSON.stringify(usuario));
-
-        if (empresa == "" || cnpj == "" || nome == "" || email == "" || senha == "" || confirmacao == "" || perfilUser == "") {
-            mensagem.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
-        } else if (empresa = empresa.indexOf('0') != -1) {
-            mensagem.innerHTML = `<span style="color: red;">Empresa inválida!</span>`
-        } else if (cnpj.length != 14) {
-            mensagem.innerHTML = `<span style="color: red;">CNPJ inválido!</span>`
-        } else if (nome = nome.indexOf('0') != -1) {
-            mensagem.innerHTML = `<span style="color: red;">Nome inválido!</span>`
-        } else if (!tem_arroba || !termina_com_sptech) {
-            mensagem.innerHTML = `<span style="color: red;">E-mail inválido</span>`;
-        } else if (confirmacao != senha) {
-            mensagem.innerHTML = `<span style="color: red;">Erro na confirmação da senha!</span>`
-        } else{
-            localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-            mensagem.innerHTML = `<span style="color: green;">Redirecionando...</span>`
-            setTimeout(function () {
-                window.location = ".//cadastroEnd.html";
-            }, 1000);
-        }
-
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+        
+        mensagem.innerHTML = `<span style="color: green;">Redirecionando...</span>`
+        setTimeout(function () {
+            window.location = ".//cadastroEnd.html";
+        }, 1000);
     }
 
 </script>

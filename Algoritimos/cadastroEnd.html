@@ -120,20 +120,45 @@
         let num = input_num.value;
         let uf = perfil.value;
 
+        let campos = [
+            input_cep,
+            input_rua,
+            input_bairro,
+            input_num,
+            perfil
+        ]
+
+        for (var i = 0; i < campos.length; i++) {
+            if (campos[i].value == "") {
+                mensagem.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
+                return false;
+            }
+        }
+
+        if (cep.length != 9) {
+            mensagem.innerHTML = `<span style="color: red;">CEP inválido!</span>`
+            return;
+        }
+
         let usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-        if (cep == "" || rua == "" || bairro == "" || num == "" || uf == "") {
-            mensagem.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
-        } else if (cep.length != 9) {
-            mensagem.innerHTML = `<span style="color: red;">CEP inválido!</span>`
-        } else {
-            mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
-            localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-            localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-            setTimeout(function () {
-                window.location = ".//login.html";
-            }, 1000);
+        if (!usuario) {
+            mensagem.innerHTML = "Usuário não encontrado!";
+            return;
         }
+
+        usuario.cep = cep;
+        usuario.rua = rua;
+        usuario.bairro = bairro;
+        usuario.numero = num;
+        usuario.uf = uf;
+
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+
+        mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
+        setTimeout(function () {
+            window.location = ".//login.html";
+        }, 1000);
     }
 
 </script>
