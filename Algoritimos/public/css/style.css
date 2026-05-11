@@ -180,7 +180,7 @@ html {
     align-items: center;
     justify-content: flex-end;
     height: 690px;
-    background-image: url('img/fundo-simulador.png');
+    background-image: url('../assets/img/fundo-simulador.png');
     background-size: cover;
     background-position: center;
 
@@ -514,7 +514,7 @@ html {
 
 .main .img {
     position: relative;
-    background-image: url(img/mineracao_img1.png);
+    background-image: url(../assets/img/mineracao_img1.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
