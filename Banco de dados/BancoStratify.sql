@@ -4,6 +4,16 @@ CREATE DATABASE Stratifybd;
 -- Utilização do Banco de Dados Stratify_bd
 USE Stratifybd;
 
+-- Tabela endereço da empresa que está associada a empresa
+CREATE TABLE Endereco(
+	id_endereco INT PRIMARY KEY AUTO_INCREMENT,
+	logradouro_endereco VARCHAR(45),
+	numero_endereco VARCHAR(10),
+	bairro_endereco VARCHAR(30),
+	cidade_endereco VARCHAR(30),
+	uf_endereco CHAR(2),
+	cep_endereco CHAR(9)
+);
 
 -- Criação da tabela para armazenamento dos cadastros das empresas
 -- Tabela Empresa (cadastro da empresa pelo representante)
@@ -29,17 +39,6 @@ email_func VARCHAR(60) NOT NULL,
 senha_func VARCHAR(20) NOT NULL,
 fkEmpresa INT,
 CONSTRAINT chFkEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa(id_empresa)
-);
-
--- Tabela endereço da empresa que está associada a empresa
-CREATE TABLE Endereco(
-id_endereco INT PRIMARY KEY AUTO_INCREMENT,
-logradouro_endereco VARCHAR(45),
-numero_endereco VARCHAR(10),
-bairro_endereco VARCHAR(30),
-cidade_endereco VARCHAR(30),
-uf_endereco CHAR(2),
-cep_endereco CHAR(9)
 );
 
 -- Criação da tabela para armazenamento dos sensores
@@ -71,13 +70,21 @@ CREATE TABLE Alerta (
     CONSTRAINT chLeitura FOREIGN KEY (fkLeitura) REFERENCES Leitura (id_leitura)
 );
 
+-- Inserção de dados na tabela Endereco
+INSERT INTO Endereco (logradouro_endereco, numero_endereco, bairro_endereco, cidade_endereco, uf_endereco, cep_endereco) VALUES
+('Rua Haddock Lobo', '595', 'Cerqueira César', 'São Paulo', 'SP', '01414-001'),
+('Rua das Palmeiras', '120', 'Centro', 'Belo Horizonte', 'MG', '30130-000'),
+('Avenida Brasil', '4500', 'Copacabana', 'Rio de Janeiro', 'RJ', '22040-001'),
+('Rua XV de Novembro', '789', 'Centro', 'Curitiba', 'PR', '80020-310'),
+('Rua Frei Serafim', '300', 'Centro', 'Teresina', 'PI', '64000-020');
+
 -- Inserção de dados da tabela Empresa
-INSERT INTO Empresa (razao_social, cnpj_empresa, nome_representante, email_representante, senha_representante) VALUES
-('Mineração Vale Verde', '12345678000101', 'Fernando Brandão', 'fernando.brandao@sptech.school', 'V@l3X9#1'),
-('Solo Forte Mineração', '22345678000102', 'Ana Souza', 'ana@soloforte.com', 'S0l!F8r$'),
-('Terra Segura Ltda', '32345678000103', 'Bruno Lima', 'bruno@terrasegura.com', 'T#rR4$9!'),
-('Mineração Horizonte', '42345678000104', 'Juliana Rocha', 'juliana@horizonte.com', 'H0r!Z8@e'),
-('GeoMinas Operações', '52345678000105', 'Marcos Pereira', 'marcos@geominas.com', 'G3oM!n@5');
+INSERT INTO Empresa (razao_social, cnpj_empresa, nome_representante, email_representante, senha_representante, fkEmpresaEnd) VALUES
+('Mineração Vale Verde', '12345678000101', 'Fernando Brandão', 'fernando.brandao@sptech.school', 'V@l3X9#1', 1),
+('Solo Forte Mineração', '22345678000102', 'Ana Souza', 'ana@soloforte.com', 'S0l!F8r$', 2),
+('Terra Segura Ltda', '32345678000103', 'Bruno Lima', 'bruno@terrasegura.com', 'T#rR4$9!', 3),
+('Mineração Horizonte', '42345678000104', 'Juliana Rocha', 'juliana@horizonte.com', 'H0r!Z8@e', 4),
+('GeoMinas Operações', '52345678000105', 'Marcos Pereira', 'marcos@geominas.com', 'G3oM!n@5', 5);
 
 
 -- Inserção de dados da tabela Funcionario
@@ -87,15 +94,6 @@ INSERT INTO Funcionario (nome_func, cargo_func, cpf_func, email_func, senha_func
 ('Gleidson Natanael', 'Supervisor', '34567890122', 'gleidson@gmail.com', 'N@t7#9L3', 3),
 ('Karina Dias', 'Supervisor', '45678901233', 'karina@gmail.com', 'K@r1N@#4', 4),
 ('Maria Isabella', 'Analista', '56789012344', 'mariaisabella@gmail.com', 'M!s@8#5A', 5);
-
--- Inserção de dados na tabela Endereco
-INSERT INTO Endereco (logradouro_endereco, numero_endereco, bairro_endereco, cidade_endereco, uf_endereco, cep_endereco, fkEmpresaEnd) VALUES
-('Rua Haddock Lobo', '595', 'Cerqueira César', 'São Paulo', 'SP', '01414-001', 1),
-('Rua das Palmeiras', '120', 'Centro', 'Belo Horizonte', 'MG', '30130-000', 2),
-('Avenida Brasil', '4500', 'Copacabana', 'Rio de Janeiro', 'RJ', '22040-001', 3),
-('Rua XV de Novembro', '789', 'Centro', 'Curitiba', 'PR', '80020-310', 4),
-('Rua Frei Serafim', '300', 'Centro', 'Teresina', 'PI', '64000-020', 5);
-
 
 -- Inserção de dados da tabela Sensor
 INSERT INTO Sensor (codigo_sensor, data_inicio, fkEmpresa) VALUES
@@ -195,4 +193,3 @@ WHEN l.valor_umidade > 60 AND l.valor_umidade <= 80 THEN 'Alto'
 ELSE 'Crítico'
 END AS Risco
 FROM Leitura l;
-

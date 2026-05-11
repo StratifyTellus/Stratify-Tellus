@@ -17,24 +17,19 @@ function autenticar(req, res) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
-                    if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
+                    if (resultadoAquarios.length > 0) {
+                        res.json({
+                            id_empresa: resultadoAutenticar[0].id_empresa,
+                            razao_social: resultadoAutenticar[0].razao_social,
+                            cnpj_empresa: resultadoAutenticar[0].cnpj_empresa,
+                            nome_representante: resultadoAutenticar[0].nome_representante,
+                            email_representante: resultadoAutenticar[0].email_representante,
+                            senha_representante: resultadoAutenticar[0].senha_representante,
+                            fkEmpresaEnd: resultadoAutenticar[0].fkEmpresaEnd
+                        });
+                    }
 
-                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        aquarios: resultadoAquarios
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }
-                            })
-                    } else if (resultadoAutenticar.length == 0) {
+                    else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
@@ -53,10 +48,13 @@ function autenticar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
+    var id_empresa = req.body.id_empresaServer;
+    var razao_social = req.body.razao_socialServer;
+    var cnpj_empresa = req.body.cnpj_empresaServer;
+    var nome_representante = req.body.nome_representanteServer;
+    var email_representante = req.body.email_representanteServer;
+    var senha_representante = req.body.senha_representanteServer;
+    var fkEmpresaEnd = req.body.fkEmpresaEndServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -65,12 +63,10 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresa == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
-    } else {
+    } else{
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa)
+        usuarioModel.cadastrar(nome, email, senha, )
             .then(
                 function (resultado) {
                     res.json(resultado);
