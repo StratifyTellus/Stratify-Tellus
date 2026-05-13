@@ -24,6 +24,11 @@
     </div>
 
     <div class="cadastro">
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
         <div class="container">
             <div class="titulo">
                 <h2>Conte conosco <br> para uma <br> experiência <br> incrível.</h2>
@@ -180,32 +185,65 @@
             mensagem.innerHTML = `<span style="color: red;">Nome inválido!</span>`;
             return;
         }
-        
+
         if (!tem_arroba || !termina_com_sptech) {
             mensagem.innerHTML = `<span style="color: red;">E-mail inválido</span>`;
             return;
         }
-        
+
         if (confirmacao != senha) {
             mensagem.innerHTML = `<span style="color: red;">Erro na confirmação da senha!</span>`
             return;
         }
 
-        let usuario = {
-            empresa: empresa,
-            cnpj: cnpj,
-            nome: nome,
-            email: email,
-            senha: senha,
-            perfil: perfilUser,
-        };
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                razao_socialServer: empresa,
+                cnpj_empresaServer: cnpj,
+                nome_representanteServer: nome,
+                email_representanteServer: email,
+                senha_representanteServer: senha
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-        
-        mensagem.innerHTML = `<span style="color: green;">Redirecionando...</span>`
-        setTimeout(function () {
-            window.location = ".//cadastroEnd.html";
-        }, 1000);
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+
+                    resposta.json().then(dados => {
+
+                        sessionStorage.ID_EMPRESA = dados.idEmpresa;
+
+                        mensagem.innerHTML =
+                            "Cadastro realizado com sucesso! Redirecionando...";
+
+                        setTimeout(() => {
+                            window.location = "./cadastroEnd.html";
+                        }, 2000);
+                    });
+
+                    limparFormulario();
+                    finalizarAguardar();
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                finalizarAguardar();
+            });
+
+        return false;
     }
+
+
 
 </script>

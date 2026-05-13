@@ -165,17 +165,7 @@
         if (cpf.length != 11) {
             mensagem.innerHTML = `<span style="color: red;">CPF inválido</span>`
             return;
-        } 
-        
-        let usuario = {
-            nome: nome,
-            email: email,
-            senha: senha,
-            cpf: cpf,
-            perfil: perfilUser
-        };
-
-        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+        }
 
         mensagem.innerHTML = `<span style="color: green;">Cadastro efetuado com sucesso!</span>`;
     }

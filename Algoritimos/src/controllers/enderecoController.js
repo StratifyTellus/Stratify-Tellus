@@ -1,5 +1,4 @@
-var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
+var enderecoModel = require("../models/enderecoModel");
 
 function autenticar(req, res) {
     var email = req.body.email_representanteServer;
@@ -17,15 +16,15 @@ function autenticar(req, res) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
-                    if (resultadoAutenticar.length == 1) {
+                    if (resultadoAutenticar.length == 0) {
                         res.json({
-                            id_empresa: resultadoAutenticar[0].id_empresa,
-                            razao_social: resultadoAutenticar[0].razao_social,
-                            cnpj_empresa: resultadoAutenticar[0].cnpj_empresa,
-                            nome_representante: resultadoAutenticar[0].nome_representante,
-                            email_representante: resultadoAutenticar[0].email_representante,
-                            senha_representante: resultadoAutenticar[0].senha_representante,
-                            fkEmpresaEnd: resultadoAutenticar[0].fkEmpresaEnd
+                            id_endereco: resultadoAutenticar[0].id_endereco,
+                            logradouro_endereco: resultadoAutenticar[0].logradouro_endereco,
+                            numero_endereco: resultadoAutenticar[0].numero_endereco,
+                            bairro_endereco: resultadoAutenticar[0].bairro_endereco,
+                            cidade_endereco: resultadoAutenticar[0].cidade_endereco,
+                            uf_endereco: resultadoAutenticar[0].uf_endereco,
+                            cep_endereco: resultadoAutenticar[0].cep_endereco
                         });
                     }
 
@@ -47,27 +46,33 @@ function autenticar(req, res) {
 }
 
 function cadastrar(req, res) {
-    var razao_social = req.body.razao_socialServer;
-    var cnpj_empresa = req.body.cnpj_empresaServer;
-    var nome_representante = req.body.nome_representanteServer;
-    var email_representante = req.body.email_representanteServer;
-    var senha_representante = req.body.senha_representanteServer;
 
-    usuarioModel.cadastrar(
-        razao_social,
-        cnpj_empresa,
-        nome_representante,
-        email_representante,
-        senha_representante
+    var logradouro = req.body.logradouroServer;
+    var numero = req.body.numeroServer;
+    var bairro = req.body.bairroServer;
+    var cidade = req.body.cidadeServer;
+    var uf = req.body.ufServer;
+    var cep = req.body.cepServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+    enderecoModel.cadastrar(
+        logradouro,
+        numero,
+        bairro,
+        cidade,
+        uf,
+        cep,
+        fkEmpresa
     )
         .then(function (resultado) {
-            res.json({
-                idEmpresa: resultado.insertId
-            });
+
+            res.json(resultado);
 
         }).catch(function (erro) {
+
             console.log(erro);
             res.status(500).json(erro.sqlMessage);
+
         });
 
 }

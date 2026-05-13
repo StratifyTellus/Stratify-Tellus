@@ -21,9 +21,23 @@ CREATE TABLE Empresa (
     cnpj_empresa CHAR(14) NOT NULL,
     nome_representante VARCHAR(50) NOT NULL,
     email_representante VARCHAR(60) NOT NULL,
-    senha_representante VARCHAR(20) NOT NULL,
-    fkEmpresaEnd INT,
-	CONSTRAINT chFkEndereco FOREIGN KEY (fkEmpresaEnd) REFERENCES Endereco (id_endereco)
+    senha_representante VARCHAR(20) NOT NULL
+);
+
+-- Tabela endereço da empresa que está associada a empresa
+CREATE TABLE Endereco(
+	id_endereco INT PRIMARY KEY AUTO_INCREMENT,
+	logradouro_endereco VARCHAR(45),
+	numero_endereco VARCHAR(10),
+	bairro_endereco VARCHAR(30),
+	cidade_endereco VARCHAR(30),
+	uf_endereco CHAR(2),
+	cep_endereco CHAR(9),
+    fkEmpresa INT,
+    
+    CONSTRAINT fkEnderecoEmpresa
+    FOREIGN KEY (fkEmpresa)
+    REFERENCES Empresa(id_empresa)
 );
 
 -- Tabela funcionario para o representante cadastrar seus funcionários
@@ -39,16 +53,6 @@ CREATE TABLE Funcionario(
 	CONSTRAINT chFkEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa(id_empresa)
 );
 
--- Tabela endereço da empresa que está associada a empresa
-CREATE TABLE Endereco(
-	id_endereco INT PRIMARY KEY AUTO_INCREMENT,
-	logradouro_endereco VARCHAR(45),
-	numero_endereco VARCHAR(10),
-	bairro_endereco VARCHAR(30),
-	cidade_endereco VARCHAR(30),
-	uf_endereco CHAR(2),
-	cep_endereco CHAR(9)
-);
 
 -- Criação da tabela para armazenamento dos sensores
 CREATE TABLE Sensor (

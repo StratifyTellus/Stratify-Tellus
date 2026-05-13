@@ -25,6 +25,11 @@
     </div>
 
     <div class="login">
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
         <div class="container">
             <div class="titulo">
                 <h2>É um prazer <br> tê-lo(a) <br> conosco <br> novamente!</h2>
@@ -69,35 +74,64 @@
         let email = input_email.value;
         let senha = ipt_senha.value;
 
-        let usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (email == "" || senha == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        } 
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
 
-        let campos = [
-            input_email,
-            ipt_senha,
-        ]
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
 
-        for (var i = 0; i < campos.length; i++) {
-            if (campos[i].value == "") {
-                mensagem.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
-                return false;
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "./dashboard/dashboard.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
             }
-        }
 
-        if (!usuario) {
-            alert("Usuário não encontrado");
-            return;
-        }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
 
-        if (usuario.email != email || usuario.senha != senha) {
-            alert("E-mail ou Senha incorretos");
-            return;
-        } else {
-            mensagem.innerHTML = `<span style="color: green;">Login efetuado com sucesso!</span>`
-            localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
-            setTimeout(function () {
-                window.location = ".//dashboard.html";
-            }, 1000); // apenas para exibir o loading
-        }
+        return false;
+    }
 
+    function sumirMensagem() {
+        cardErro.style.display = "none"
     }
 </script>
