@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <div class="header">
         <div class="logo">
             <a href="index.html"><img src="assets/img/logo.png" alt="" width="60px" height="auto"></a>
@@ -122,6 +121,8 @@
 
 </html>
 
+<script src="./js/sessao.js"></script>
+
 <script>
     function cadastro() {
         let cep = input_cep.value;
@@ -180,7 +181,7 @@
                         "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
                     setTimeout(() => {
-                        window.location = "login.html";
+                        window.location = "./login.html";
                     }, "2000");
 
                     limparFormulario();

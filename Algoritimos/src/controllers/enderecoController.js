@@ -16,7 +16,7 @@ function autenticar(req, res) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
-                    if (resultadoAutenticar.length == 0) {
+                    if (resultadoAutenticar.length == 1) {
                         res.json({
                             id_endereco: resultadoAutenticar[0].id_endereco,
                             logradouro_endereco: resultadoAutenticar[0].logradouro_endereco,
@@ -53,7 +53,6 @@ function cadastrar(req, res) {
     var cidade = req.body.cidadeServer;
     var uf = req.body.ufServer;
     var cep = req.body.cepServer;
-    var fkEmpresa = req.body.fkEmpresaServer;
 
     enderecoModel.cadastrar(
         logradouro,
@@ -61,8 +60,7 @@ function cadastrar(req, res) {
         bairro,
         cidade,
         uf,
-        cep,
-        fkEmpresa
+        cep
     )
         .then(function (resultado) {
 
