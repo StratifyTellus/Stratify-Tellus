@@ -4,28 +4,28 @@ CREATE DATABASE Stratifybd;
 -- Utilização do Banco de Dados Stratify_bd
 USE Stratifybd;
 
--- Tabela endereço da empresa que está associada a empresa
-CREATE TABLE Endereco(
-	id_endereco INT PRIMARY KEY AUTO_INCREMENT,
-	logradouro_endereco VARCHAR(45),
-	numero_endereco VARCHAR(10),
-	bairro_endereco VARCHAR(30),
-	cidade_endereco VARCHAR(30),
-	uf_endereco CHAR(2),
-	cep_endereco CHAR(9)
-);
-
 -- Criação da tabela para armazenamento dos cadastros das empresas
 -- Tabela Empresa (cadastro da empresa pelo representante)
 CREATE TABLE Empresa (
-	id_empresa INT PRIMARY KEY AUTO_INCREMENT,
+     id_empresa INT PRIMARY KEY AUTO_INCREMENT,
     razao_social VARCHAR(45) NOT NULL,
     cnpj_empresa CHAR(14) NOT NULL,
     nome_representante VARCHAR(50) NOT NULL,
     email_representante VARCHAR(60) NOT NULL,
-    senha_representante VARCHAR(20) NOT NULL,
-    fkEmpresaEnd INT,
-	CONSTRAINT chFkEndereco FOREIGN KEY (fkEmpresaEnd) REFERENCES Endereco (id_endereco)
+    senha_representante VARCHAR(20) NOT NULL
+);
+
+-- Tabela endereço da empresa que está associada a empresa
+CREATE TABLE Endereco(
+      id_endereco INT PRIMARY KEY AUTO_INCREMENT,
+      logradouro_endereco VARCHAR(45),
+      numero_endereco VARCHAR(10),
+      bairro_endereco VARCHAR(30),
+      cidade_endereco VARCHAR(30),
+      uf_endereco CHAR(2),
+      cep_endereco CHAR(9),
+	  fk_empresa INT,
+	  CONSTRAINT chEmpresa FOREIGN KEY (fk_empresa) REFERENCES Empresa (id_empresa)
 );
 
 -- Tabela funcionario para o representante cadastrar seus funcionários
@@ -43,7 +43,7 @@ CONSTRAINT chFkEmpresa FOREIGN KEY (fkEmpresa) REFERENCES Empresa(id_empresa)
 
 -- Criação da tabela para armazenamento dos sensores
 CREATE TABLE Sensor (
-	id_sensor INT PRIMARY KEY AUTO_INCREMENT,
+      id_sensor INT PRIMARY KEY AUTO_INCREMENT,
     codigo_sensor VARCHAR(10) UNIQUE,
     data_inicio DATETIME,
     fkEmpresa INT,
@@ -52,7 +52,7 @@ CREATE TABLE Sensor (
 
 -- Criação da tabela para armazenamento das leituras de umidade
 CREATE TABLE Leitura (
-	id_leitura INT PRIMARY KEY AUTO_INCREMENT,
+      id_leitura INT PRIMARY KEY AUTO_INCREMENT,
     data_leitura DATETIME DEFAULT CURRENT_TIMESTAMP,
     valor_umidade FLOAT NOT NULL,
     fkSensor INT,
@@ -61,7 +61,7 @@ CREATE TABLE Leitura (
 
 -- Criação da tabela para armazenamento dos alertas
 CREATE TABLE Alerta (
-	id_alerta INT PRIMARY KEY AUTO_INCREMENT,
+      id_alerta INT PRIMARY KEY AUTO_INCREMENT,
     data_alerta DATETIME DEFAULT CURRENT_TIMESTAMP,
     descricao_alerta VARCHAR(200) NOT NULL,
     nivel_alerta VARCHAR(8) NOT NULL,
@@ -70,22 +70,21 @@ CREATE TABLE Alerta (
     CONSTRAINT chLeitura FOREIGN KEY (fkLeitura) REFERENCES Leitura (id_leitura)
 );
 
--- Inserção de dados na tabela Endereco
-INSERT INTO Endereco (logradouro_endereco, numero_endereco, bairro_endereco, cidade_endereco, uf_endereco, cep_endereco) VALUES
-('Rua Haddock Lobo', '595', 'Cerqueira César', 'São Paulo', 'SP', '01414-001'),
-('Rua das Palmeiras', '120', 'Centro', 'Belo Horizonte', 'MG', '30130-000'),
-('Avenida Brasil', '4500', 'Copacabana', 'Rio de Janeiro', 'RJ', '22040-001'),
-('Rua XV de Novembro', '789', 'Centro', 'Curitiba', 'PR', '80020-310'),
-('Rua Frei Serafim', '300', 'Centro', 'Teresina', 'PI', '64000-020');
-
 -- Inserção de dados da tabela Empresa
-INSERT INTO Empresa (razao_social, cnpj_empresa, nome_representante, email_representante, senha_representante, fkEmpresaEnd) VALUES
-('Mineração Vale Verde', '12345678000101', 'Fernando Brandão', 'fernando.brandao@sptech.school', 'V@l3X9#1', 1),
-('Solo Forte Mineração', '22345678000102', 'Ana Souza', 'ana@soloforte.com', 'S0l!F8r$', 2),
-('Terra Segura Ltda', '32345678000103', 'Bruno Lima', 'bruno@terrasegura.com', 'T#rR4$9!', 3),
-('Mineração Horizonte', '42345678000104', 'Juliana Rocha', 'juliana@horizonte.com', 'H0r!Z8@e', 4),
-('GeoMinas Operações', '52345678000105', 'Marcos Pereira', 'marcos@geominas.com', 'G3oM!n@5', 5);
+INSERT INTO Empresa (razao_social, cnpj_empresa, nome_representante, email_representante, senha_representante) VALUES
+('Mineração Vale Verde', '12345678000101', 'Fernando Brandão', 'fernando.brandao@sptech.school', 'V@l3X9#1'),
+('Solo Forte Mineração', '22345678000102', 'Ana Souza', 'ana@soloforte.com', 'S0l!F8r$'),
+('Terra Segura Ltda', '32345678000103', 'Bruno Lima', 'bruno@terrasegura.com', 'T#rR4$9!'),
+('Mineração Horizonte', '42345678000104', 'Juliana Rocha', 'juliana@horizonte.com', 'H0r!Z8@e'),
+('GeoMinas Operações', '52345678000105', 'Marcos Pereira', 'marcos@geominas.com', 'G3oM!n@5');
 
+-- Inserção de dados na tabela Endereco
+INSERT INTO Endereco (logradouro_endereco, numero_endereco, bairro_endereco, cidade_endereco, uf_endereco, cep_endereco, fk_empresa) VALUES
+('Rua Haddock Lobo', '595', 'Cerqueira César', 'São Paulo', 'SP', '01414-001', 1),
+('Rua das Palmeiras', '120', 'Centro', 'Belo Horizonte', 'MG', '30130-000', 2),
+('Avenida Brasil', '4500', 'Copacabana', 'Rio de Janeiro', 'RJ', '22040-001', 3),
+('Rua XV de Novembro', '789', 'Centro', 'Curitiba', 'PR', '80020-310', 4),
+('Rua Frei Serafim', '300', 'Centro', 'Teresina', 'PI', '64000-020', 5);
 
 -- Inserção de dados da tabela Funcionario
 INSERT INTO Funcionario (nome_func, cargo_func, cpf_func, email_func, senha_func, fkEmpresa) VALUES
@@ -193,3 +192,6 @@ WHEN l.valor_umidade > 60 AND l.valor_umidade <= 80 THEN 'Alto'
 ELSE 'Crítico'
 END AS Risco
 FROM Leitura l;
+
+SELECT * FROM Empresa;
+SELECT * FROM endereco;
