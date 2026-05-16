@@ -197,7 +197,7 @@
         }
 
         // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
+        fetch("/empresas/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -238,7 +238,6 @@
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-                finalizarAguardar();
             });
 
         return false;

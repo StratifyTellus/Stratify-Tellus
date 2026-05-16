@@ -1,27 +1,29 @@
-// var database = require("../database/config");
+var database = require("../database/config")
 
-// function buscarPorId(id) {
-//   var instrucaoSql = `SELECT * FROM empresa WHERE id = '${id}'`;
+function autenticar(email_representante, senha_representante) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email_representante, senha_representante)
+    var instrucaoSql = `
+        SELECT id_empresa, razao_social, cnpj_empresa, nome_representante, email_representante, senha_representante, fkEmpresaEnd FROM Empresa WHERE email_representante = '${email_representante}' AND senha_representante = '${senha_representante}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
-//   return database.executar(instrucaoSql);
-// }
+// Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
+var database = require("../database/config")
 
-// function listar() {
-//   var instrucaoSql = `SELECT id, razao_social, cnpj, codigo_ativacao FROM empresa`;
+// Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
+function cadastrar(razao_social, cnpj_empresa, nome_representante, email_representante, senha_representante) {
 
-//   return database.executar(instrucaoSql);
-// }
+    var instrucaoSql = `
+        INSERT INTO Empresa(razao_social, cnpj_empresa, nome_representante, email_representante, senha_representante) VALUES
+        ('${razao_social}','${cnpj_empresa}','${nome_representante}','${email_representante}','${senha_representante}');
+    `;
 
-// function buscarPorCnpj(cnpj) {
-//   var instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
+    return database.executar(instrucaoSql);
+}
 
-//   return database.executar(instrucaoSql);
-// }
-
-// function cadastrar(razaoSocial, cnpj) {
-//   var instrucaoSql = `INSERT INTO empresa (razao_social, cnpj) VALUES ('${razaoSocial}', '${cnpj}')`;
-
-//   return database.executar(instrucaoSql);
-// }
-
-// module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+module.exports = {
+    autenticar,
+    cadastrar
+};

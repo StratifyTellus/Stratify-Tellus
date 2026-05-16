@@ -1,47 +1,75 @@
-// var empresaModel = require("../models/empresaModel");
+var usuarioModel = require("../models/empresaModel");
 
-// function buscarPorCnpj(req, res) {
-//   var cnpj = req.query.cnpj;
+function autenticar(req, res) {
+    var email = req.body.email_representanteServer;
+    var senha = req.body.senha_representanteServer;
 
-//   empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-//     res.status(200).json(resultado);
-//   });
-// }
+    if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está indefinida!");
+    } else {
 
-// function listar(req, res) {
-//   empresaModel.listar().then((resultado) => {
-//     res.status(200).json(resultado);
-//   });
-// }
+        usuarioModel.autenticar(email, senha)
+            .then(
+                function (resultadoAutenticar) {
+                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
-// function buscarPorId(req, res) {
-//   var id = req.params.id;
+                    if (resultadoAutenticar.length == 1) {
+                        res.json({
+                            id_empresa: resultadoAutenticar[0].id_empresa,
+                            razao_social: resultadoAutenticar[0].razao_social,
+                            cnpj_empresa: resultadoAutenticar[0].cnpj_empresa,
+                            nome_representante: resultadoAutenticar[0].nome_representante,
+                            email_representante: resultadoAutenticar[0].email_representante,
+                            senha_representante: resultadoAutenticar[0].senha_representante,
+                        });
+                    }
 
-//   empresaModel.buscarPorId(id).then((resultado) => {
-//     res.status(200).json(resultado);
-//   });
-// }
+                    else if (resultadoAutenticar.length == 0) {
+                        res.status(403).send("Email e/ou senha inválido(s)");
+                    } else {
+                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
 
-// function cadastrar(req, res) {
-//   var cnpj = req.body.cnpj;
-//   var razaoSocial = req.body.razaoSocial;
+}
 
-//   empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-//     if (resultado.length > 0) {
-//       res
-//         .status(401)
-//         .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
-//     } else {
-//       empresaModel.cadastrar(razaoSocial, cnpj).then((resultado) => {
-//         res.status(201).json(resultado);
-//       });
-//     }
-//   });
-// }
+function cadastrar(req, res) {
+    var razao_social = req.body.razao_socialServer;
+    var cnpj_empresa = req.body.cnpj_empresaServer;
+    var nome_representante = req.body.nome_representanteServer;
+    var email_representante = req.body.email_representanteServer;
+    var senha_representante = req.body.senha_representanteServer;
 
-// module.exports = {
-//   buscarPorCnpj,
-//   buscarPorId,
-//   cadastrar,
-//   listar,
-// };
+    usuarioModel.cadastrar(
+        razao_social,
+        cnpj_empresa,
+        nome_representante,
+        email_representante,
+        senha_representante
+    )
+        .then(function (resultado) {
+            res.json({
+                idEmpresa: resultado.insertId
+            });
+
+        }).catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+
+}
+module.exports = {
+    autenticar,
+    cadastrar
+}
